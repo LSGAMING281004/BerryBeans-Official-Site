@@ -29,6 +29,11 @@ public class AdminController {
     private ContactMessageRepository contactMessageRepository;
 
     // Projects CRUD
+    @GetMapping("/projects")
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
+    }
+
     @PostMapping("/projects")
     public Project createProject(@RequestBody Project project) {
         return projectRepository.save(project);
@@ -41,6 +46,11 @@ public class AdminController {
     }
 
     // Jobs CRUD
+    @GetMapping("/jobs")
+    public List<Job> getAllJobs() {
+        return jobRepository.findAll();
+    }
+
     @PostMapping("/jobs")
     public Job createJob(@RequestBody Job job) {
         return jobRepository.save(job);

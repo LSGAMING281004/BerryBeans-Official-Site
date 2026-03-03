@@ -21,6 +21,9 @@ public class ContactMessage {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String message;
 
+    @Column(columnDefinition = "LONGTEXT")
+    private String resume;
+
     private LocalDateTime createdAt;
 
     private String status; // "NEW", "READ"
