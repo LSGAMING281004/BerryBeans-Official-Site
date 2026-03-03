@@ -49,3 +49,4 @@ A modern, professional IT company website built with React, Vite, Tailwind CSS, 
 - Responsive Glassmorphism Design
 - Admin Dashboard (JWT Secured)
 - Content Management CRUD capabilities for Projects, Jobs, Messages
+
