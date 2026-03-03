@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+target/
+
+# Build outputs
+dist/
+build/
+*.jar
+*.war
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS and Temp files
+.DS_Store
+Thumbs.db
+*.log
+tmp/
+temp/
+
+# Local Env
+.env
+.env.local
