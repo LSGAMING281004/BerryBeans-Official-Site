@@ -13,7 +13,7 @@ function Dashboard() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     // Form States
-    const [projectForm, setProjectForm] = useState({ title: '', description: '', imageUrl: '', technologies: '' });
+    const [projectForm, setProjectForm] = useState({ title: '', description: '', imageUrl: '', technologies: '', link: '' });
     const [jobForm, setJobForm] = useState({ title: '', description: '', requirements: '', location: '', type: 'Full-time' });
 
     const navigate = useNavigate();
@@ -64,7 +64,7 @@ function Dashboard() {
         try {
             if (activeTab === 'projects') {
                 await api.post('/admin/projects', projectForm);
-                setProjectForm({ title: '', description: '', imageUrl: '', technologies: '' });
+                setProjectForm({ title: '', description: '', imageUrl: '', technologies: '', link: '' });
             } else if (activeTab === 'jobs') {
                 await api.post('/admin/jobs', jobForm);
                 setJobForm({ title: '', description: '', requirements: '', location: '', type: 'Full-time' });
@@ -169,6 +169,10 @@ function Dashboard() {
                                         <div className="col-span-2">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
                                             <textarea required rows="4" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition resize-none" placeholder="Describe the project objective and results..." value={projectForm.description} onChange={e => setProjectForm({ ...projectForm, description: e.target.value })}></textarea>
+                                        </div>
+                                        <div className="col-span-2">
+                                            <label className="block text-sm font-semibold text-gray-700 mb-2">Project Link (Optional)</label>
+                                            <input type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="https://app.berrybeans.com" value={projectForm.link} onChange={e => setProjectForm({ ...projectForm, link: e.target.value })} />
                                         </div>
                                     </>
                                 ) : (

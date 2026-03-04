@@ -51,11 +51,18 @@ function Portfolio() {
                             <div className="relative h-64 overflow-hidden shrink-0">
                                 <img src={project.imageUrl || 'https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80'} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-berrydark/90 via-berrydark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
-                                        <button className="bg-berrypurple-600 text-white rounded-full p-3 hover:bg-berrypurple-500 transition-colors shadow-lg float-right">
-                                            <ExternalLink size={20} />
-                                        </button>
-                                    </div>
+                                    {project.link && (
+                                        <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                                            <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-berrypurple-600 text-white rounded-full p-3 hover:bg-berrypurple-500 transition-colors shadow-lg float-right inline-block"
+                                            >
+                                                <ExternalLink size={20} />
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="p-8 flex-1 flex flex-col">

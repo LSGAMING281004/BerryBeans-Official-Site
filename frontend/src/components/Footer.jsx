@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Twitter, Linkedin, Github, Mail, MapPin, Phone, Instagram, Youtube } from 'lucide-react';
+import { X, Linkedin, Github, Mail, MapPin, Phone, Instagram, Youtube, Facebook } from 'lucide-react';
 
 function Footer() {
     return (
@@ -17,10 +17,11 @@ function Footer() {
                             We transform your core ideas into powerful, enterprise-grade, and beautifully designed digital experiences.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="https://twitter.com/berrybeans" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-berrypurple-600 hover:border-berrypurple-500 hover:text-white transition-all duration-300"><Twitter size={18} /></a>
-                            <a href="https://linkedin.com/company/berrybeans" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-berrypurple-600 hover:border-berrypurple-500 hover:text-white transition-all duration-300"><Linkedin size={18} /></a>
+                            <a href="https://facebook.com/berrybeans" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-berrypurple-600 hover:border-berrypurple-500 hover:text-white transition-all duration-300"><Facebook size={18} /></a>
+                            <a href="https://twitter.com/berrybeans" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-berrypurple-600 hover:border-berrypurple-500 hover:text-white transition-all duration-300"><X size={18} /></a>
                             <a href="https://instagram.com/berrybeans" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-berrypurple-600 hover:border-berrypurple-500 hover:text-white transition-all duration-300"><Instagram size={18} /></a>
                             <a href="https://youtube.com/berrybeans" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-berrypurple-600 hover:border-berrypurple-500 hover:text-white transition-all duration-300"><Youtube size={18} /></a>
+                            <a href="https://linkedin.com/company/berrybeans" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-berrypurple-600 hover:border-berrypurple-500 hover:text-white transition-all duration-300"><Linkedin size={18} /></a>
                         </div>
                     </div>
 

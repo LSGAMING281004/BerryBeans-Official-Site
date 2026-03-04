@@ -20,4 +20,5 @@ public class Project {
     private String imageUrl;
 
     private String technologies;
+    private String link;
 }
