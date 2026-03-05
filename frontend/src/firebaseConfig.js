@@ -1,7 +1,5 @@
 // src/firebaseConfig.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
-
 const firebaseConfig = {
     apiKey: "AIzaSyDZR8RWOP72WMQz5FRQqr2gIJDBX4sazwo",
     authDomain: "berrybeansofficial.firebaseapp.com",
@@ -13,6 +11,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 export default app;

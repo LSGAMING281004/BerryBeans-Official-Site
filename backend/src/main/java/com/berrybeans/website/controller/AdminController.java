@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-@CrossOrigin(origins = "*")
 @PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
@@ -35,12 +35,12 @@ public class AdminController {
     }
 
     @PostMapping("/projects")
-    public Project createProject(@RequestBody Project project) {
+    public Project createProject(@RequestBody @NonNull Project project) {
         return projectRepository.save(project);
     }
 
     @DeleteMapping("/projects/{id}")
-    public ResponseEntity<?> deleteProject(@PathVariable Long id) {
+    public ResponseEntity<?> deleteProject(@PathVariable @NonNull Long id) {
         projectRepository.deleteById(id);
         return ResponseEntity.ok("Project deleted");
     }
@@ -52,12 +52,12 @@ public class AdminController {
     }
 
     @PostMapping("/jobs")
-    public Job createJob(@RequestBody Job job) {
+    public Job createJob(@RequestBody @NonNull Job job) {
         return jobRepository.save(job);
     }
 
     @DeleteMapping("/jobs/{id}")
-    public ResponseEntity<?> deleteJob(@PathVariable Long id) {
+    public ResponseEntity<?> deleteJob(@PathVariable @NonNull Long id) {
         jobRepository.deleteById(id);
         return ResponseEntity.ok("Job deleted");
     }
@@ -69,7 +69,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/messages/{id}")
-    public ResponseEntity<?> deleteMessage(@PathVariable Long id) {
+    public ResponseEntity<?> deleteMessage(@PathVariable @NonNull Long id) {
         contactMessageRepository.deleteById(id);
         return ResponseEntity.ok("Message deleted");
     }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api/axiosConfig';
 import { MessageSquare, FolderKanban, Briefcase, LogOut, LayoutDashboard, Plus, Trash2, X, FileText, Menu } from 'lucide-react';
@@ -25,9 +25,9 @@ function Dashboard() {
             return;
         }
         fetchData();
-    }, [navigate, activeTab]);
+    }, [navigate, fetchData]);
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         setLoading(true);
         try {
             if (activeTab === 'messages') {
@@ -46,7 +46,7 @@ function Dashboard() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [activeTab, navigate]);
 
     const deleteItem = async (type, id) => {
         if (!window.confirm(`Are you sure you want to delete this ${type.slice(0, -1)}?`)) return;

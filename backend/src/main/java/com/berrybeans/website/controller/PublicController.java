@@ -9,12 +9,12 @@ import com.berrybeans.website.repository.ContactMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/public")
-@CrossOrigin(origins = "*")
 public class PublicController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class PublicController {
     }
 
     @PostMapping("/contact")
-    public ResponseEntity<?> submitContactMessage(@RequestBody ContactMessage message) {
+    public ResponseEntity<?> submitContactMessage(@RequestBody @NonNull ContactMessage message) {
         contactMessageRepository.save(message);
         return ResponseEntity.ok("Message sent successfully!");
     }
