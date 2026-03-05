@@ -18,15 +18,6 @@ function Dashboard() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            navigate('/admin/login');
-            return;
-        }
-        fetchData();
-    }, [navigate, fetchData]);
-
     const fetchData = useCallback(async () => {
         setLoading(true);
         try {
@@ -47,6 +38,15 @@ function Dashboard() {
             setLoading(false);
         }
     }, [activeTab, navigate]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/admin/login');
+            return;
+        }
+        fetchData();
+    }, [navigate, fetchData]);
 
     const deleteItem = async (type, id) => {
         if (!window.confirm(`Are you sure you want to delete this ${type.slice(0, -1)}?`)) return;
