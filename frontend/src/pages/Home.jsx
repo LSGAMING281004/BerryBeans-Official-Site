@@ -57,7 +57,10 @@ function Home() {
                                 <span className="text-sm font-semibold text-[#f05a66]">Growth Focused Agency</span>
                             </motion.div>
 
-                            <motion.h1 variants={fadeUp} className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
+                            <motion.h1
+                                variants={fadeUp}
+                                className="text-3xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight max-w-[95%] md:max-w-none"
+                            >
                                 We are <span className="text-[#f05a66]">Not Hunting</span> the sales, <br className="hidden md:block" />
                                 Just Supporting your <span className="text-[#aedd4c]">business growth</span>
                             </motion.h1>

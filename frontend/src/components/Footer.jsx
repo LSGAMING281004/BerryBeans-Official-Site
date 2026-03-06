@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { X, Linkedin, Github, Mail, MapPin, Phone, Instagram, Youtube, Facebook } from 'lucide-react';
+import AnimatedLogo from './AnimatedLogo';
 
 function Footer() {
     return (
@@ -11,7 +12,7 @@ function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     <div className="lg:col-span-1">
                         <Link to="/" className="inline-flex items-center mb-6 bg-white rounded-2xl p-2 shadow-lg">
-                            <img src="/logo.png" alt="BerryBeans Logo" className="h-10 w-auto" />
+                            <AnimatedLogo className="h-12 w-auto" speed={0.6} />
                         </Link>
                         <p className="text-sm leading-relaxed mb-8 opacity-80 font-light">
                             We transform your core ideas into powerful, enterprise-grade, and beautifully designed digital experiences.

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api/axiosConfig';
 import { MessageSquare, FolderKanban, Briefcase, LogOut, LayoutDashboard, Plus, Trash2, X, FileText, Menu } from 'lucide-react';
+import AnimatedLogo from '../../components/AnimatedLogo';
 
 function Dashboard() {
     const [messages, setMessages] = useState([]);
@@ -98,7 +99,7 @@ function Dashboard() {
             {/* Mobile Header */}
             <div className="lg:hidden bg-berrydark text-white p-4 flex items-center justify-between sticky top-0 z-50 shadow-md">
                 <div className="flex items-center gap-2">
-                    <img src="/logo.png" alt="Logo" className="h-8 w-auto bg-white rounded-lg p-1" />
+                    <AnimatedLogo className="h-8 w-auto bg-white rounded-lg p-1" speed={0.6} />
                     <span className="font-bold tracking-tight">BerryAdmin</span>
                 </div>
                 <button onClick={() => setShowMobileMenu(!showMobileMenu)} className="p-2 hover:bg-white/10 rounded-lg transition-colors">
@@ -109,7 +110,7 @@ function Dashboard() {
             {/* Sidebar */}
             <div className={`fixed inset-y-0 left-0 z-40 w-72 bg-berrydark text-white p-6 flex flex-col border-r border-gray-800 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${showMobileMenu ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="hidden lg:flex flex-col items-center gap-3 mb-10 px-2 mt-4 bg-white/5 p-4 rounded-2xl">
-                    <img src="/logo.png" alt="BerryBeans Logo" className="h-10 w-auto bg-white rounded-xl p-1 shadow-md" />
+                    <AnimatedLogo className="h-10 w-auto bg-white rounded-xl p-1 shadow-md" speed={0.6} />
                     <h2 className="text-xl font-bold tracking-tight text-white">BerryAdmin</h2>
                 </div>
 

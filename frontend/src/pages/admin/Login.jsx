@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api/axiosConfig';
+import AnimatedLogo from '../../components/AnimatedLogo';
 
 function Login() {
     const [formData, setFormData] = useState({ username: '', password: '' });
@@ -47,7 +48,7 @@ function Login() {
             <div className="max-w-md w-full space-y-8 bg-white/80 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white relative z-10">
                 <div>
                     <div className="flex justify-center mb-6">
-                        <img src="/logo.png" alt="BerryBeans Logo" className="h-16 w-auto drop-shadow-md" />
+                        <AnimatedLogo className="h-16 w-auto drop-shadow-md" speed={0.6} />
                     </div>
                     <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900 tracking-tight block w-full">Admin Gateway</h2>
                     <p className="mt-3 text-center text-sm text-gray-500 font-light block w-full">

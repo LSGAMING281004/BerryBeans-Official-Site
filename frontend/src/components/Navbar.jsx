@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import AnimatedLogo from './AnimatedLogo';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ function Navbar() {
                 <div className="flex justify-between items-center">
                     <div className="flex-shrink-0">
                         <Link to="/" className="flex items-center">
-                            <img src="/logo.png" alt="BerryBeans Logo" className="h-14 w-auto" />
+                            <AnimatedLogo className="h-16 w-auto" speed={0.6} />
                         </Link>
                     </div>
 
