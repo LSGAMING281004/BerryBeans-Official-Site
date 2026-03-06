@@ -40,10 +40,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                         userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
+                System.out.println(
+                        "Authenticated user: " + username + " with authorities: " + userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            // Cannot set user authentication
+            System.err.println("Cannot set user authentication: " + e.getMessage());
         }
 
         filterChain.doFilter(request, response);
@@ -52,7 +54,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
 
-        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+        if (StringUtils.hasText(headerAuth) && headerAuth.regionMatches(true, 0, "Bearer ", 0, 7)) {
             return headerAuth.substring(7);
         }
 

@@ -38,18 +38,18 @@ function Navbar() {
                             <Link
                                 key={link.name}
                                 to={link.path}
-                                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${location.pathname === link.path ? 'text-berrypurple-700 bg-berrypurple-50' : 'text-gray-600 hover:text-berrypurple-600 hover:bg-berrypurple-50/50'}`}
+                                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${location.pathname === link.path ? 'text-berrypink-700 bg-berrypink-50' : 'text-gray-600 hover:text-berrypink-600 hover:bg-berrypink-50/50'}`}
                             >
                                 {link.name}
                             </Link>
                         ))}
-                        <Link to="/contact" className="ml-4 bg-berrypurple-600 text-white px-6 py-2.5 rounded-full font-medium shadow-md hover:bg-berrypurple-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                        <Link to="/contact" className="ml-4 bg-[#f05a66] text-white px-6 py-2.5 rounded-full font-bold shadow-[0_4px_15px_rgba(240,90,102,0.3)] hover:bg-berrypink-700 hover:shadow-[0_8px_25px_rgba(240,90,102,0.5)] hover:-translate-y-0.5 transition-all duration-300">
                             Contact Us
                         </Link>
                     </div>
 
                     <div className="md:hidden flex flex-col justify-center">
-                        <button onClick={() => setIsOpen(!isOpen)} type="button" className="text-gray-600 hover:text-berrypurple-600 transition">
+                        <button onClick={() => setIsOpen(!isOpen)} type="button" className="text-gray-600 hover:text-berrypink-600 transition">
                             {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
                         </button>
                     </div>
@@ -64,12 +64,12 @@ function Navbar() {
                             key={link.name}
                             to={link.path}
                             onClick={() => setIsOpen(false)}
-                            className={`block px-4 py-3 rounded-lg font-medium text-base transition-colors ${location.pathname === link.path ? 'text-berrypurple-700 bg-berrypurple-50' : 'text-gray-600 hover:text-berrypurple-600 hover:bg-gray-50'}`}
+                            className={`block px-4 py-3 rounded-xl font-medium text-base transition-colors ${location.pathname === link.path ? 'text-berrypink-700 bg-berrypink-50' : 'text-gray-600 hover:text-berrypink-600 hover:bg-gray-50'}`}
                         >
                             {link.name}
                         </Link>
                     ))}
-                    <Link to="/contact" onClick={() => setIsOpen(false)} className="block mt-4 text-center bg-berrypurple-600 text-white px-4 py-3 rounded-xl font-medium shadow-md">
+                    <Link to="/contact" onClick={() => setIsOpen(false)} className="block mt-4 text-center bg-[#f05a66] text-white px-4 py-3 rounded-xl font-bold shadow-md">
                         Contact Us
                     </Link>
                 </div>

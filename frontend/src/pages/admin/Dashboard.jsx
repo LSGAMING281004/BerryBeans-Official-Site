@@ -87,7 +87,7 @@ function Dashboard() {
     const NavButton = ({ id, icon, label }) => (
         <button
             onClick={() => { setActiveTab(id); setShowForm(false); setShowMobileMenu(false); }}
-            className={`w-full flex items-center gap-3 text-left py-3 px-5 rounded-xl transition-all duration-300 font-medium ${activeTab === id ? 'bg-berrypurple-600 text-white shadow-md' : 'text-gray-400 hover:bg-white/10 hover:text-white'}`}
+            className={`w-full flex items-center gap-3 text-left py-3 px-5 rounded-xl transition-all duration-300 font-medium ${activeTab === id ? 'bg-berrypink-600 text-white shadow-md' : 'text-gray-400 hover:bg-white/10 hover:text-white'}`}
         >
             {icon} {label}
         </button>
@@ -134,13 +134,13 @@ function Dashboard() {
                 <div className="max-w-6xl mx-auto">
                     <header className="mb-6 md:mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
-                            <LayoutDashboard size={28} className="text-berrypurple-600" />
+                            <LayoutDashboard size={28} className="text-berrypink-600" />
                             <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 capitalize tracking-tight">{activeTab} Management</h1>
                         </div>
                         {activeTab !== 'messages' && (
                             <button
                                 onClick={() => setShowForm(!showForm)}
-                                className="w-full md:w-auto flex items-center justify-center gap-2 bg-berrypurple-600 text-white px-6 py-3 rounded-2xl font-bold shadow-lg hover:bg-berrypurple-700 transition transform hover:-translate-y-0.5"
+                                className="w-full md:w-auto flex items-center justify-center gap-2 bg-berrypink-600 text-white px-6 py-3 rounded-2xl font-bold shadow-lg hover:bg-berrypink-700 transition transform hover:-translate-y-0.5"
                             >
                                 {showForm ? <X size={20} /> : <Plus size={20} />}
                                 {showForm ? 'Cancel' : `Add ${activeTab.slice(0, -1)}`}
@@ -149,45 +149,45 @@ function Dashboard() {
                     </header>
 
                     {showForm && (
-                        <div className="mb-10 bg-white p-8 rounded-[2.5rem] shadow-xl border border-berrypurple-100 animate-in fade-in slide-in-from-top-4 duration-300">
+                        <div className="mb-10 bg-white p-8 rounded-[2.5rem] shadow-xl border border-berrypink-100 animate-in fade-in slide-in-from-top-4 duration-300">
                             <h2 className="text-2xl font-bold mb-6 text-gray-900">Create New {activeTab.slice(0, -1)}</h2>
                             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {activeTab === 'projects' ? (
                                     <>
                                         <div className="col-span-2 md:col-span-1">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Project Title</label>
-                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="e.g. Modern E-commerce" value={projectForm.title} onChange={e => setProjectForm({ ...projectForm, title: e.target.value })} />
+                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" placeholder="e.g. Modern E-commerce" value={projectForm.title} onChange={e => setProjectForm({ ...projectForm, title: e.target.value })} />
                                         </div>
                                         <div className="col-span-2 md:col-span-1">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Technologies</label>
-                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="React, Node.js, Tailwind" value={projectForm.technologies} onChange={e => setProjectForm({ ...projectForm, technologies: e.target.value })} />
+                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" placeholder="React, Node.js, Tailwind" value={projectForm.technologies} onChange={e => setProjectForm({ ...projectForm, technologies: e.target.value })} />
                                         </div>
                                         <div className="col-span-2">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Image URL</label>
-                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="https://unsplash.com/..." value={projectForm.imageUrl} onChange={e => setProjectForm({ ...projectForm, imageUrl: e.target.value })} />
+                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" placeholder="https://unsplash.com/..." value={projectForm.imageUrl} onChange={e => setProjectForm({ ...projectForm, imageUrl: e.target.value })} />
                                         </div>
                                         <div className="col-span-2">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
-                                            <textarea required rows="4" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition resize-none" placeholder="Describe the project objective and results..." value={projectForm.description} onChange={e => setProjectForm({ ...projectForm, description: e.target.value })}></textarea>
+                                            <textarea required rows="4" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition resize-none" placeholder="Describe the project objective and results..." value={projectForm.description} onChange={e => setProjectForm({ ...projectForm, description: e.target.value })}></textarea>
                                         </div>
                                         <div className="col-span-2">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Project Link (Optional)</label>
-                                            <input type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="https://app.berrybeans.com" value={projectForm.link} onChange={e => setProjectForm({ ...projectForm, link: e.target.value })} />
+                                            <input type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" placeholder="https://app.berrybeans.com" value={projectForm.link} onChange={e => setProjectForm({ ...projectForm, link: e.target.value })} />
                                         </div>
                                     </>
                                 ) : (
                                     <>
                                         <div className="col-span-2 md:col-span-1">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Job Title</label>
-                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="Fullstack Developer" value={jobForm.title} onChange={e => setJobForm({ ...jobForm, title: e.target.value })} />
+                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" placeholder="Fullstack Developer" value={jobForm.title} onChange={e => setJobForm({ ...jobForm, title: e.target.value })} />
                                         </div>
                                         <div className="col-span-2 md:col-span-1">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Location</label>
-                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="Remote / New York" value={jobForm.location} onChange={e => setJobForm({ ...jobForm, location: e.target.value })} />
+                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" placeholder="Remote / New York" value={jobForm.location} onChange={e => setJobForm({ ...jobForm, location: e.target.value })} />
                                         </div>
                                         <div className="col-span-2 md:col-span-1">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Job Type</label>
-                                            <select className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" value={jobForm.type} onChange={e => setJobForm({ ...jobForm, type: e.target.value })}>
+                                            <select className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" value={jobForm.type} onChange={e => setJobForm({ ...jobForm, type: e.target.value })}>
                                                 <option>Full-time</option>
                                                 <option>Part-time</option>
                                                 <option>Contract</option>
@@ -195,16 +195,16 @@ function Dashboard() {
                                         </div>
                                         <div className="col-span-2">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Requirements</label>
-                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition" placeholder="React, Spring Boot, MySQL" value={jobForm.requirements} onChange={e => setJobForm({ ...jobForm, requirements: e.target.value })} />
+                                            <input required type="text" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition" placeholder="React, Spring Boot, MySQL" value={jobForm.requirements} onChange={e => setJobForm({ ...jobForm, requirements: e.target.value })} />
                                         </div>
                                         <div className="col-span-2">
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
-                                            <textarea required rows="4" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypurple-500 outline-none transition resize-none" placeholder="What will the person do?..." value={jobForm.description} onChange={e => setJobForm({ ...jobForm, description: e.target.value })}></textarea>
+                                            <textarea required rows="4" className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-berrypink-500 outline-none transition resize-none" placeholder="What will the person do?..." value={jobForm.description} onChange={e => setJobForm({ ...jobForm, description: e.target.value })}></textarea>
                                         </div>
                                     </>
                                 )}
                                 <div className="col-span-2 flex justify-end gap-3 mt-4">
-                                    <button type="submit" disabled={loading} className="bg-berrypurple-600 text-white px-10 py-4 rounded-full font-bold shadow-lg hover:bg-berrypurple-700 disabled:opacity-50 transition">
+                                    <button type="submit" disabled={loading} className="bg-berrypink-600 text-white px-10 py-4 rounded-full font-bold shadow-lg hover:bg-berrypink-700 disabled:opacity-50 transition">
                                         {loading ? 'Saving...' : 'Publish'}
                                     </button>
                                 </div>
@@ -261,7 +261,7 @@ function Dashboard() {
                                                                         link.download = `resume_${msg.name.replace(/\s+/g, '_')}.pdf`;
                                                                         link.click();
                                                                     }}
-                                                                    className="text-berrypurple-600 p-2 hover:bg-berrypurple-50 rounded-xl transition flex items-center gap-1 text-xs font-bold"
+                                                                    className="text-berrypink-600 p-2 hover:bg-berrypink-50 rounded-xl transition flex items-center gap-1 text-xs font-bold"
                                                                     title="Download Resume"
                                                                 >
                                                                     <FileText size={16} className="md:w-[18px] md:h-[18px]" /> <span className="hidden md:inline">Resume</span>
@@ -293,7 +293,7 @@ function Dashboard() {
                                                     <td className="px-4 md:px-8 py-4 md:py-6">
                                                         <div className="flex flex-wrap gap-1.5 md:gap-2">
                                                             {proj.technologies?.split(',').map(tech => (
-                                                                <span key={tech} className="bg-berrypurple-50 text-berrypurple-600 px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-bold">{tech.trim()}</span>
+                                                                <span key={tech} className="bg-berrypink-50 text-berrypink-600 px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-bold">{tech.trim()}</span>
                                                             ))}
                                                         </div>
                                                     </td>
@@ -311,7 +311,7 @@ function Dashboard() {
                                                 <tr key={job.id} className="hover:bg-gray-50/50 transition-colors">
                                                     <td className="px-4 md:px-8 py-4 md:py-6 whitespace-nowrap">
                                                         <div className="font-bold text-gray-900 text-sm md:text-base">{job.title}</div>
-                                                        <div className="text-[10px] md:text-sm text-berrypurple-600 font-semibold">{job.type}</div>
+                                                        <div className="text-[10px] md:text-sm text-berrypink-600 font-semibold">{job.type}</div>
                                                     </td>
                                                     <td className="px-4 md:px-8 py-4 md:py-6">
                                                         <div className="text-gray-900 text-xs md:text-sm font-medium">{job.location}</div>

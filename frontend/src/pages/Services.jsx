@@ -5,7 +5,7 @@ function Services() {
     return (
         <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-24">
-                <h2 className="text-sm font-bold tracking-widest text-berrypurple-600 uppercase mb-3 block w-full">What We Do</h2>
+                <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">What We Do</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">Enterprise Services</h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
                     We provide end-to-end software development services from ideation to deployment, utilizing the latest enterprise-grade technologies.
@@ -50,15 +50,15 @@ function ServiceSection({ icon, title, desc, image, reverse }) {
     return (
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }} className={`flex flex-col lg:flex-row gap-12 lg:gap-16 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>
             <div className="flex-1 text-left">
-                <div className="w-20 h-20 bg-berrypurple-50 text-berrypurple-600 rounded-3xl flex items-center justify-center mb-8 shadow-sm">
+                <div className="w-20 h-20 bg-berrygreen-50 text-berrygreen-600 rounded-[28px] flex items-center justify-center mb-8 shadow-sm">
                     {icon}
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">{title}</h2>
                 <p className="text-lg text-gray-600 leading-relaxed font-light">{desc}</p>
             </div>
             <div className="flex-1 w-full relative group">
-                <div className="absolute inset-0 bg-berrypurple-600 rounded-3xl transform translate-x-4 translate-y-4 -z-10 opacity-10 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500"></div>
-                <img src={image} alt={title} className="rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] w-full h-72 md:h-[400px] object-cover transition-transform duration-500 group-hover:-translate-y-2" />
+                <div className="absolute inset-0 bg-berrygreen-400 rounded-[32px] transform translate-x-4 translate-y-4 -z-10 opacity-10 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500"></div>
+                <img src={image} alt={title} className="rounded-[32px] shadow-[0_20px_50px_rgba(174,221,76,0.1)] w-full h-72 md:h-[400px] object-cover transition-transform duration-500 group-hover:-translate-y-2" />
             </div>
         </motion.div>
     );

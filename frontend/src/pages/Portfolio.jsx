@@ -24,7 +24,7 @@ function Portfolio() {
     return (
         <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-20">
-                <h2 className="text-sm font-bold tracking-widest text-berrypurple-600 uppercase mb-3 block w-full">Case Studies</h2>
+                <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Case Studies</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">Our Portfolio</h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
                     Explore our recent projects and the innovative solutions we've engineered for our enterprise partners.
@@ -33,7 +33,7 @@ function Portfolio() {
 
             {loading ? (
                 <div className="flex justify-center items-center py-32">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-berrypurple-600"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-berrypink-600"></div>
                 </div>
             ) : projects.length === 0 ? (
                 <div className="text-center text-gray-500 py-32 text-lg font-light">No projects to display yet.</div>
@@ -46,7 +46,7 @@ function Portfolio() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] bg-white relative hover:shadow-[0_20px_50px_rgb(91,33,182,0.15)] transition-all duration-500 hover:-translate-y-2 border border-gray-100 flex flex-col"
+                            className="group rounded-[32px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] bg-white relative hover:shadow-[0_20px_50px_rgba(240,90,102,0.1)] transition-all duration-500 hover:-translate-y-2 border border-gray-100 flex flex-col"
                         >
                             <div className="relative h-64 overflow-hidden shrink-0">
                                 <img src={project.imageUrl || 'https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80'} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -57,7 +57,7 @@ function Portfolio() {
                                                 href={project.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="bg-berrypurple-600 text-white rounded-full p-3 hover:bg-berrypurple-500 transition-colors shadow-lg float-right inline-block"
+                                                className="bg-berrypink-600 text-white rounded-full p-3 hover:bg-berrypink-700 transition-colors shadow-lg float-right inline-block"
                                             >
                                                 <ExternalLink size={20} />
                                             </a>

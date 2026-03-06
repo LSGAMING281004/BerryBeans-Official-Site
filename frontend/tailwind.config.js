@@ -7,18 +7,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        berrypurple: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6', // Deep purple
-          900: '#4c1d95',
-          950: '#2e1065',
+        berrypink: {
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          300: '#fda4af',
+          400: '#fb7185',
+          500: '#f43f5e',
+          600: '#f05a66', // Brand Pink Base
+          700: '#e11d48',
+          800: '#be123c',
+          900: '#881337',
+        },
+        berrygreen: {
+          50: '#f7fee7',
+          100: '#ecfccb',
+          200: '#d9f99d',
+          300: '#bef264',
+          400: '#aedd4c', // Brand Green Base
+          500: '#84cc16',
+          600: '#65a30d',
+          700: '#4d7c0f',
+          800: '#3f6212',
+          900: '#365314',
         },
         berrydark: '#0f172a'
       },
