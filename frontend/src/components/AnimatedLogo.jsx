@@ -1,23 +1,11 @@
-import { useRef, useEffect } from 'react';
+import React from 'react';
 
-const AnimatedLogo = ({ className, speed = 1 }) => {
-    const videoRef = useRef(null);
-
-    useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.playbackRate = speed;
-        }
-    }, [speed]);
-
+const AnimatedLogo = ({ className }) => {
     return (
-        <video
-            ref={videoRef}
-            src="/gif.mp4"
+        <img
+            src="/logo.png"
+            alt="BerryBeans Logo"
             className={className}
-            autoPlay
-            loop
-            muted
-            playsInline
         />
     );
 };

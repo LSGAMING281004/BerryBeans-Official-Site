@@ -3,9 +3,11 @@ package com.berrybeans.website.controller;
 import com.berrybeans.website.model.Project;
 import com.berrybeans.website.model.Job;
 import com.berrybeans.website.model.ContactMessage;
+import com.berrybeans.website.model.LeadershipMember;
 import com.berrybeans.website.repository.ProjectRepository;
 import com.berrybeans.website.repository.JobRepository;
 import com.berrybeans.website.repository.ContactMessageRepository;
+import com.berrybeans.website.repository.LeadershipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,9 @@ public class PublicController {
     @Autowired
     private ContactMessageRepository contactMessageRepository;
 
+    @Autowired
+    private LeadershipRepository leadershipRepository;
+
     @GetMapping("/projects")
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
@@ -40,5 +45,10 @@ public class PublicController {
     public ResponseEntity<?> submitContactMessage(@RequestBody @NonNull ContactMessage message) {
         contactMessageRepository.save(message);
         return ResponseEntity.ok("Message sent successfully!");
+    }
+
+    @GetMapping("/leadership")
+    public List<LeadershipMember> getAllLeadership() {
+        return leadershipRepository.findAll();
     }
 }

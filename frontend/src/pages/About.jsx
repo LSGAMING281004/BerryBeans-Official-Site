@@ -1,10 +1,30 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Linkedin } from 'lucide-react';
+import api from '../api/axiosConfig';
 
 function About() {
+    const [leaders, setLeaders] = useState([]);
+    const [loadingLeaders, setLoadingLeaders] = useState(true);
+
     const fadeUp = {
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
     };
+
+    useEffect(() => {
+        async function fetchLeadership() {
+            try {
+                const res = await api.get('/public/leadership');
+                setLeaders(res.data);
+            } catch (err) {
+                console.error('Failed to load leadership:', err);
+            } finally {
+                setLoadingLeaders(false);
+            }
+        }
+        fetchLeadership();
+    }, []);
 
     return (
         <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
@@ -33,28 +53,79 @@ function About() {
                 </motion.div>
             </div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-gradient-to-br from-gray-50 to-white rounded-[3rem] p-12 lg:p-20 text-center border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-                <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Leadership</h2>
-                <h3 className="text-4xl font-bold text-gray-900 mb-16 block w-full">Meet Our Team</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                    <TeamMember name="Alex Turner" role="CEO & Founder" />
-                    <TeamMember name="Maria Santos" role="CTO" />
-                    <TeamMember name="James Wilson" role="Lead Designer" />
-                    <TeamMember name="Emma Davis" role="Head of Engineering" />
+            {/* Leadership Section */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-gray-50 to-white rounded-[3rem] p-12 lg:p-20 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+            >
+                <div className="text-center mb-16">
+                    <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3">Leadership</h2>
+                    <h3 className="text-4xl font-bold text-gray-900">Meet Our Team</h3>
                 </div>
+
+                {loadingLeaders ? (
+                    <div className="flex justify-center py-16">
+                        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-berrypink-600"></div>
+                    </div>
+                ) : leaders.length === 0 ? (
+                    <p className="text-center text-gray-400 font-light py-10">Leadership team coming soon.</p>
+                ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                        {leaders.map((member, index) => (
+                            <motion.div
+                                key={member.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: index * 0.08 }}
+                            >
+                                <TeamMemberCard member={member} />
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
             </motion.div>
         </div>
     );
 }
 
-function TeamMember({ name, role }) {
+function TeamMemberCard({ member }) {
     return (
-        <div className="group text-center">
-            <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-berrygreen-50 group-hover:ring-berrygreen-200 transition-all duration-300 shadow-md group-hover:shadow-lg">
-                <img src={`https://ui-avatars.com/api/?name=${name.replace(' ', '+')}&background=aedd4c&color=333&size=128`} alt={name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+        <div className="group flex flex-col items-center text-center">
+            {/* Photo + Hover Overlay */}
+            <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-md ring-2 ring-transparent group-hover:ring-berrypink-200 transition-all duration-300">
+                <img
+                    src={member.photoUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=aedd4c&color=333&size=256`}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {/* LinkedIn Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
+                    {member.linkedinUrl ? (
+                        <a
+                            href={member.linkedinUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="flex items-center gap-2 bg-white text-[#0077b5] px-4 py-2 rounded-full text-sm font-bold shadow-lg hover:bg-[#0077b5] hover:text-white transition-colors duration-200"
+                        >
+                            <Linkedin size={16} />
+                            LinkedIn
+                        </a>
+                    ) : (
+                        <span className="text-white/60 text-xs font-medium">No LinkedIn</span>
+                    )}
+                </div>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-1">{name}</h3>
-            <p className="text-berrypink-600 font-medium">{role}</p>
+
+            {/* Info */}
+            <h3 className="text-base font-bold text-gray-900 leading-tight">{member.name}</h3>
+            <p className="text-berrypink-600 font-semibold text-sm mt-0.5">{member.position}</p>
+            {member.description && (
+                <p className="text-gray-500 text-xs mt-2 leading-relaxed line-clamp-3">{member.description}</p>
+            )}
         </div>
     );
 }

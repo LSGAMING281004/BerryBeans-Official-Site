@@ -41,38 +41,29 @@ const WorldGlobe = ({ activeLocationIndex }) => {
         <div className="w-full h-full flex items-center justify-center">
             <Globe
                 ref={globeRef}
-                backgroundColor="rgba(0,0,0,0)"
-                showAtmosphere={true}
-                atmosphereColor="#aedd4c"
-                atmosphereAltitude={0.15}
+                backgroundColor="rgba(255,255,255,0)"
+                globeImageUrl="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
+                showAtmosphere={false}
 
                 // Land representation using hex polygons for a premium vector look
                 hexPolygonsData={countries.features}
                 hexPolygonResolution={3}
-                hexPolygonMargin={0.3}
-                hexPolygonColor={() => '#aedd4c'} // Brand Green
+                hexPolygonMargin={0.2}
+                hexPolygonColor={() => 'rgba(200, 200, 200, 0.9)'} // Light gray-white landmasses
 
-                // Markers for locations
-                htmlElementsData={locations}
-                htmlElement={(d, index) => {
-                    const isActive = locations.findIndex(l => l.name === d.name) === activeLocationIndex;
-                    const el = document.createElement('div');
-                    el.innerHTML = `
-            <div class="flex flex-col items-center group">
-              <div class="relative">
-                ${isActive ? '<div class="absolute inset-0 bg-[#f05a66] rounded-full blur-md opacity-60 scale-150 animate-pulse"></div>' : ''}
-                <div class="w-3 h-3 ${isActive ? 'bg-[#f05a66] scale-125' : 'bg-gray-400'} rounded-full border-2 border-white shadow-lg transition-all duration-500 relative z-10"></div>
-              </div>
-              <div class="mt-1.5 px-2 py-0.5 ${isActive ? 'bg-[#f05a66] text-white' : 'bg-white/90 text-gray-900'} backdrop-blur-sm rounded-md text-[9px] font-black uppercase tracking-tighter border ${isActive ? 'border-[#f05a66]' : 'border-gray-200'} shadow-sm whitespace-nowrap transition-all duration-500">
-                ${d.name}
-              </div>
-            </div>
-          `;
-                    return el;
-                }}
+                // Labels for locations
+                labelsData={locations}
+                labelLat={d => d.lat}
+                labelLng={d => d.lng}
+                labelText={d => d.name}
+                labelSize={d => locations.findIndex(l => l.name === d.name) === activeLocationIndex ? 1.8 : 1.2}
+                labelDotRadius={d => locations.findIndex(l => l.name === d.name) === activeLocationIndex ? 0.9 : 0.55}
+                labelColor={d => locations.findIndex(l => l.name === d.name) === activeLocationIndex ? '#f05a66' : '#111111'}
+                labelResolution={3}
+                labelAltitude={0.015}
 
-                width={300}
-                height={300}
+                width={400}
+                height={400}
             />
         </div>
     );

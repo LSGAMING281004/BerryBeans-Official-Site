@@ -1,4 +1,4 @@
-import { Code, Smartphone, Cloud, PenTool, Database, Server } from 'lucide-react';
+import { Code, Smartphone, Cloud, PenTool, Database, Server, Megaphone, BarChart, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 function Services() {
@@ -40,6 +40,27 @@ function Services() {
                     desc="Optimize your deployment pipelines and infrastructure with AWS, Azure, Docker, and Kubernetes. We ensure 99.99% uptime, auto-scaling capabilities, and uncompromised security protocols."
                     image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80"
                     reverse={true}
+                />
+                <ServiceSection
+                    icon={<Megaphone className="w-10 h-10" />}
+                    title="Digital Marketing & SEO"
+                    desc="Data-driven marketing campaigns, comprehensive SEO strategies, and targeted social media management to skyrocket your brand's digital presence, conversion rates, and ROI."
+                    image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80"
+                    reverse={false}
+                />
+                <ServiceSection
+                    icon={<BarChart className="w-10 h-10" />}
+                    title="Data Analysis & BI"
+                    desc="Transform raw metrics into actionable insights. We build custom dashboards, implement predictive AI models, and engineer robust data pipelines tailored for your executive decision-making."
+                    image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80"
+                    reverse={true}
+                />
+                <ServiceSection
+                    icon={<Layers className="w-10 h-10" />}
+                    title="Full Stack Application Architecture"
+                    desc="Cohesive, feature-rich full stack apps integrating modern frontends with powerful secure backends. We own the entire software lifecycle from database modeling to final UI production."
+                    image="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80"
+                    reverse={false}
                 />
             </div>
         </div>

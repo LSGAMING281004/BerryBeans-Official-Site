@@ -178,20 +178,92 @@ function Home() {
                 </div>
             </section>
 
-            {/* Technologies Section */}
-            <section className="py-24 px-4 bg-gray-50 border-b border-gray-100 relative">
-                <div className="max-w-7xl mx-auto text-center">
+            {/* Technologies Section (Paradox Marquee) */}
+            <section className="py-24 bg-gray-50 border-b border-gray-100 relative overflow-hidden">
+                <style>{`
+                    @keyframes marquee-left {
+                        0% { transform: translateX(0%); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    @keyframes marquee-right {
+                        0% { transform: translateX(-50%); }
+                        100% { transform: translateX(0%); }
+                    }
+                    .animate-marquee-left {
+                        display: flex;
+                        width: max-content;
+                        animation: marquee-left 35s linear infinite;
+                    }
+                    .animate-marquee-right {
+                        display: flex;
+                        width: max-content;
+                        animation: marquee-right 35s linear infinite;
+                    }
+                    .marquee-container:hover .animate-marquee-left,
+                    .marquee-container:hover .animate-marquee-right {
+                        animation-play-state: paused;
+                    }
+                `}</style>
+                <div className="max-w-7xl mx-auto text-center mb-16 px-4">
                     <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3">Tech Stack</h2>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-16">Powered by Industry Standards</h3>
+                    <h3 className="text-3xl font-bold text-gray-900">Powered by Industry Standards</h3>
+                </div>
 
-                    <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-                        <TechBadge name="React" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
-                        <TechBadge name="Spring Boot" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" />
-                        <TechBadge name="Tailwind CSS" icon="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" />
-                        <TechBadge name="MySQL" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" />
-                        <TechBadge name="AWS" icon="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
-                        <TechBadge name="Docker" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" />
-                        <TechBadge name="Node.js" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
+                <div className="marquee-container flex flex-col gap-8 relative w-full px-4 md:px-0">
+                    {/* Fading edges for the marquee effect */}
+                    <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+
+                    {/* Top Row (Moving Left) */}
+                    <div className="overflow-hidden w-full">
+                        <div className="animate-marquee-left gap-6 md:gap-10">
+                            {/* Original set */}
+                            <TechBadge name="Firebase" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" />
+                            <TechBadge name="WordPress" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" />
+                            <TechBadge name="Java" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" />
+                            <TechBadge name="HTML" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
+                            <TechBadge name="CSS" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
+                            <TechBadge name="JavaScript" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+                            <TechBadge name="AI/ML" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" />
+                            <TechBadge name="Python" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
+                            <TechBadge name="MongoDB" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" />
+                            <TechBadge name="PostgreSQL" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
+                            {/* Duplicated set for seamless loop */}
+                            <TechBadge name="Firebase" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" />
+                            <TechBadge name="WordPress" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" />
+                            <TechBadge name="Java" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" />
+                            <TechBadge name="HTML" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
+                            <TechBadge name="CSS" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
+                            <TechBadge name="JavaScript" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+                            <TechBadge name="AI/ML" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" />
+                            <TechBadge name="Python" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
+                            <TechBadge name="MongoDB" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" />
+                            <TechBadge name="PostgreSQL" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
+                        </div>
+                    </div>
+
+                    {/* Bottom Row (Moving Right) */}
+                    <div className="overflow-hidden w-full">
+                        <div className="animate-marquee-right gap-6 md:gap-10">
+                            {/* Original set */}
+                            <TechBadge name="GitHub" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
+                            <TechBadge name="Antigravity" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" />
+                            <TechBadge name="VS Code" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
+                            <TechBadge name="React" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+                            <TechBadge name="Spring Boot" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" />
+                            <TechBadge name="Tailwind" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" />
+                            <TechBadge name="AWS" icon="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
+                            <TechBadge name="Docker" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" />
+                            {/* Duplicated set for seamless loop */}
+                            <TechBadge name="GitHub" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
+                            <TechBadge name="Antigravity" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" />
+                            <TechBadge name="VS Code" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
+                            <TechBadge name="React" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
+                            <TechBadge name="Spring Boot" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" />
+                            <TechBadge name="Tailwind" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" />
+                            <TechBadge name="AWS" icon="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
+                            <TechBadge name="Docker" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" />
+                        </div>
                     </div>
                 </div>
             </section>

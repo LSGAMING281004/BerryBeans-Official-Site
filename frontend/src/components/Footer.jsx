@@ -71,8 +71,8 @@ function Footer() {
                     <p>&copy; {new Date().getFullYear()} BerryBeans Technologies. All rights reserved.</p>
                     <div className="mt-4 md:mt-0 flex space-x-6">
                         <Link to="/admin/login" className="hover:text-berrypink-400 transition-colors">Admin Login</Link>
-                        <Link to="#" className="hover:text-berrypink-400 transition-colors">Privacy</Link>
-                        <Link to="#" className="hover:text-berrypink-400 transition-colors">Terms</Link>
+                        <Link to="/privacy" className="hover:text-berrypink-400 transition-colors">Privacy</Link>
+                        <Link to="/terms" className="hover:text-berrypink-400 transition-colors">Terms</Link>
                     </div>
                 </div>
             </div>
