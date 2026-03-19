@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Linkedin } from 'lucide-react';
 import api from '../api/axiosConfig';
 
+import teamMeetingImg from '../assets/images/team-meeting.jpg';
+
 function About() {
     const [leaders, setLeaders] = useState([]);
     const [loadingLeaders, setLoadingLeaders] = useState(true);
@@ -27,8 +29,8 @@ function About() {
     }, []);
 
     return (
-        <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-            <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center mb-24">
+        <section id="about" className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative z-10">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp} className="text-center mb-24">
                 <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Our Story</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">About BerryBeans</h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
@@ -49,7 +51,7 @@ function About() {
                 </motion.div>
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
                     <div className="absolute inset-0 bg-gradient-to-tr from-berrygreen-400 to-berrypink-400 rounded-[32px] transform translate-x-4 translate-y-4 -z-10 opacity-30 blur-xl"></div>
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80" alt="Team meeting" className="rounded-[32px] shadow-2xl w-full object-cover aspect-square md:aspect-auto" />
+                    <img src={teamMeetingImg} alt="Team meeting" className="rounded-[32px] shadow-2xl w-full object-cover aspect-square md:aspect-auto" />
                 </motion.div>
             </div>
 
@@ -58,7 +60,7 @@ function About() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-[3rem] p-12 lg:p-20 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+                className="fluent-panel p-12 lg:p-20"
             >
                 <div className="text-center mb-16">
                     <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3">Leadership</h2>
@@ -87,7 +89,7 @@ function About() {
                     </div>
                 )}
             </motion.div>
-        </div>
+        </section>
     );
 }
 

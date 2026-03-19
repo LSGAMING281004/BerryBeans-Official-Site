@@ -66,8 +66,8 @@ function Careers() {
     };
 
     return (
-        <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-20">
+        <section id="careers" className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen relative z-10">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.4 }} className="text-center mb-20">
                 <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Join Us</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">Build the Future</h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
@@ -90,7 +90,7 @@ function Careers() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="bg-white p-8 md:p-10 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 hover:border-berrypink-200 hover:shadow-[0_10px_40px_rgba(240,90,102,0.1)] transition-all duration-300 group"
+                            className="fluent-panel p-8 md:p-10 group"
                         >
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                                 <div className="flex-1 min-w-0">
@@ -136,7 +136,7 @@ function Careers() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.2 }}
-                            className="bg-white rounded-[2.5rem] p-8 md:p-12 w-full max-w-2xl shadow-2xl relative border border-gray-100 my-8"
+                            className="fluent-acrylic rounded-[2.5rem] p-8 md:p-12 w-full max-w-2xl shadow-2xl relative my-8"
                         >
                             <button
                                 onClick={() => setViewJob(null)}
@@ -206,7 +206,7 @@ function Careers() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.2 }}
-                            className="bg-white rounded-[2.5rem] p-8 md:p-12 w-full max-w-2xl shadow-2xl relative border border-gray-100 my-8"
+                            className="fluent-acrylic rounded-[2.5rem] p-8 md:p-12 w-full max-w-2xl shadow-2xl relative my-8"
                         >
                             <button
                                 onClick={() => setShowForm(false)}
@@ -228,7 +228,7 @@ function Careers() {
                                             required
                                             type="text"
                                             placeholder="John Doe"
-                                            className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-berrypink-500 focus:border-transparent outline-none transition-all"
+                                            className="w-full px-5 py-4 bg-white/40 border border-white/60 rounded-2xl focus:ring-2 focus:ring-berrypink-500 focus:border-transparent outline-none transition-all placeholder-gray-400"
                                             value={applicantName}
                                             onChange={(e) => setApplicantName(e.target.value)}
                                         />
@@ -239,7 +239,7 @@ function Careers() {
                                             required
                                             type="email"
                                             placeholder="john@example.com"
-                                            className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-berrypink-500 focus:border-transparent outline-none transition-all"
+                                            className="w-full px-5 py-4 bg-white/40 border border-white/60 rounded-2xl focus:ring-2 focus:ring-berrypink-500 focus:border-transparent outline-none transition-all placeholder-gray-400"
                                             value={applicantEmail}
                                             onChange={(e) => setApplicantEmail(e.target.value)}
                                         />
@@ -252,7 +252,7 @@ function Careers() {
                                         required
                                         rows={4}
                                         placeholder="Tell us about yourself and why you're a great fit..."
-                                        className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-berrypink-500 focus:border-transparent outline-none transition-all resize-none"
+                                        className="w-full px-5 py-4 bg-white/40 border border-white/60 rounded-2xl focus:ring-2 focus:ring-berrypink-500 focus:border-transparent outline-none transition-all resize-none placeholder-gray-400"
                                         value={coverLetter}
                                         onChange={(e) => setCoverLetter(e.target.value)}
                                     />
@@ -301,7 +301,7 @@ function Careers() {
                     </div>
                 )}
             </AnimatePresence>
-        </div>
+        </section>
     );
 }
 

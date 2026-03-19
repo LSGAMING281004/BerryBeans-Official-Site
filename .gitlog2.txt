@@ -1,0 +1,15 @@
+﻿5977fc1 - 2026-03-18 - feat: Initialize frontend application with core components, global styling, and home page.
+d6d999c - 2026-03-17 - chore: Add Firebase hosting cache file listing frontend assets.
+d915906 - 2026-03-07 - feat: Add initial website structure, core pages, components, and backend API setup.
+11f808c - 2026-03-06 - feat: Restore animated logo, fix hero header wrapping, and finalize login security
+887955e - 2026-03-06 - feat: Brand overhaul, hero section refinement, and admin login stability fixes
+e38b18d - 2026-03-05 - Fix production 401 error: Use constructor injection for AuthTokenFilter
+a94a8c1 - 2026-03-05 - Fix admin dashboard 401 and prepare for deployment
+89ecbe4 - 2026-03-04 - Fix DB connection logic and clean up logs
+cc5446c - 2026-03-04 - Switch to JDBC_DATABASE_URL for Render deployment
+9287b59 - 2026-03-04 - Update API URL for production and configure CORS
+2e3b5c8 - 2026-03-04 - Update DB property name to match Render standard
+ece5a3a - 2026-03-04 - Update Dockerfile to use stable eclipse-temurin image
+ec3875b - 2026-03-04 - Setup backend for Render deployment and update project link features
+1175193 - 2026-03-03 - Implement Careers Apply Form and Mobile Responsive Dashboard
+0b93923 - 2026-03-03 - Merge remote changes into BerryBeans official site

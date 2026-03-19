@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Globe from 'react-globe.gl';
 
 const locations = [
@@ -13,6 +13,12 @@ const locations = [
     { name: 'Netherlands', lat: 52.0907, lng: 5.1214, color: '#f05a66' },
 ];
 
+// Stable constant — defined once outside component
+const HEX_COLOR = () => 'rgba(200, 200, 200, 0.9)';
+const LABEL_LAT = d => d.lat;
+const LABEL_LNG = d => d.lng;
+const LABEL_TEXT = d => d.name;
+
 const WorldGlobe = ({ activeLocationIndex }) => {
     const globeRef = useRef();
     const [countries, setCountries] = useState({ features: [] });
@@ -23,6 +29,51 @@ const WorldGlobe = ({ activeLocationIndex }) => {
             .then(res => res.json())
             .then(setCountries);
     }, []);
+
+    // Stable callbacks that only change when activeLocationIndex changes
+    const getHtmlElement = useCallback(d => {
+        const el = document.createElement('div');
+        const isActive = locations.findIndex(l => l.name === d.name) === activeLocationIndex;
+        
+        // Use CSS/HTML for perfect typographical clarity and boldness
+        el.innerHTML = `
+          <div style="
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            transform: translate(-50%, -100%);
+            pointer-events: none;
+          ">
+            <div style="
+              font-weight: 900; 
+              font-family: 'Inter', system-ui, sans-serif; 
+              font-size: ${isActive ? '22px' : '12px'}; 
+              color: ${isActive ? '#f05a66' : '#4b5563'}; 
+              background: rgba(255, 255, 255, 0.85);
+              backdrop-filter: blur(4px);
+              padding: ${isActive ? '4px 14px' : '2px 8px'};
+              border-radius: 100px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              white-space: nowrap;
+              border: 1px solid ${isActive ? 'rgba(240, 90, 102, 0.4)' : 'rgba(255,255,255,0.8)'};
+            ">
+              ${d.name}
+            </div>
+            <div style="
+              width: ${isActive ? '14px' : '8px'}; 
+              height: ${isActive ? '14px' : '8px'}; 
+              background-color: ${isActive ? '#f05a66' : '#9ca3af'}; 
+              border-radius: 50%; 
+              margin-top: ${isActive ? '10px' : '6px'}; 
+              border: 2px solid white; 
+              box-shadow: 0 2px 6px rgba(0,0,0,0.2); 
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            "></div>
+          </div>
+        `;
+        return el;
+    }, [activeLocationIndex]);
 
     useEffect(() => {
         if (globeRef.current) {
@@ -45,22 +96,16 @@ const WorldGlobe = ({ activeLocationIndex }) => {
                 globeImageUrl="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
                 showAtmosphere={false}
 
-                // Land representation using hex polygons for a premium vector look
                 hexPolygonsData={countries.features}
                 hexPolygonResolution={3}
                 hexPolygonMargin={0.2}
-                hexPolygonColor={() => 'rgba(200, 200, 200, 0.9)'} // Light gray-white landmasses
+                hexPolygonColor={HEX_COLOR}
 
-                // Labels for locations
-                labelsData={locations}
-                labelLat={d => d.lat}
-                labelLng={d => d.lng}
-                labelText={d => d.name}
-                labelSize={d => locations.findIndex(l => l.name === d.name) === activeLocationIndex ? 1.8 : 1.2}
-                labelDotRadius={d => locations.findIndex(l => l.name === d.name) === activeLocationIndex ? 0.9 : 0.55}
-                labelColor={d => locations.findIndex(l => l.name === d.name) === activeLocationIndex ? '#f05a66' : '#111111'}
-                labelResolution={3}
-                labelAltitude={0.015}
+                htmlElementsData={locations}
+                htmlLat={LABEL_LAT}
+                htmlLng={LABEL_LNG}
+                htmlElement={getHtmlElement}
+                htmlAltitude={0.015}
 
                 width={400}
                 height={400}

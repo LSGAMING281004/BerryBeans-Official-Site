@@ -30,8 +30,8 @@ function Contact() {
     };
 
     return (
-        <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-20">
+        <section id="contact" className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen relative z-10">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-20 animate-fade-in-up">
                 <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Contact Us</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">Let's start a conversation</h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
@@ -79,7 +79,7 @@ function Contact() {
 
                 {/* Form container */}
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="lg:col-span-2">
-                    <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-[0_10px_40px_rgb(0,0,0,0.06)] border border-gray-100">
+                    <div className="fluent-panel p-8 md:p-12">
                         <form onSubmit={handleSubmit} className="space-y-8">
                             {status.msg && (
                                 <div className={`p-4 rounded-2xl text-sm font-medium ${status.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
@@ -90,16 +90,16 @@ function Contact() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">Full Name</label>
-                                    <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-berrypink-500 focus:border-transparent transition bg-gray-50 focus:bg-white" placeholder="John Doe" />
+                                    <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange} className="w-full px-5 py-4 rounded-2xl border border-white/60 focus:ring-2 focus:ring-berrypink-500 focus:border-transparent transition bg-white/40 focus:bg-white/80 placeholder-gray-400 backdrop-blur-sm" placeholder="John Doe" />
                                 </div>
                                 <div>
                                     <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
-                                    <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-berrypink-500 focus:border-transparent transition bg-gray-50 focus:bg-white" placeholder="john@company.com" />
+                                    <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} className="w-full px-5 py-4 rounded-2xl border border-white/60 focus:ring-2 focus:ring-berrypink-500 focus:border-transparent transition bg-white/40 focus:bg-white/80 placeholder-gray-400 backdrop-blur-sm" placeholder="john@company.com" />
                                 </div>
                             </div>
                             <div>
                                 <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">Detailed Message</label>
-                                <textarea id="message" name="message" required rows="6" value={formData.message} onChange={handleChange} className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-berrypink-500 focus:border-transparent transition bg-gray-50 focus:bg-white resize-none" placeholder="Tell us about your project requirements..."></textarea>
+                                <textarea id="message" name="message" required rows="6" value={formData.message} onChange={handleChange} className="w-full px-5 py-4 rounded-2xl border border-white/60 focus:ring-2 focus:ring-berrypink-500 focus:border-transparent transition bg-white/40 focus:bg-white/80 resize-none placeholder-gray-400 backdrop-blur-sm" placeholder="Tell us about your project requirements..."></textarea>
                             </div>
                             <div>
                                 <button type="submit" disabled={loading} className={`w-full sm:w-auto bg-berrypink-600 text-white font-bold py-4 px-10 rounded-full transition shadow-[0_4px_14px_0_rgba(240,90,102,0.3)] flex justify-center items-center gap-3 ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-berrypink-700 hover:shadow-[0_6px_20px_rgba(240,90,102,0.23)] hover:-translate-y-0.5'}`}>
@@ -111,7 +111,7 @@ function Contact() {
                     </div>
                 </motion.div>
             </div>
-        </div>
+        </section>
     );
 }
 

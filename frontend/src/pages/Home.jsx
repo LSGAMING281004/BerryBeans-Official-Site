@@ -1,8 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Smartphone, Cloud, PenTool, ChevronRight, MapPin, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, memo } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+import { Code, Smartphone, Cloud, PenTool, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import WorldGlobe from '../components/WorldGlobe';
+import JarvisLightBackground from '../components/JarvisLightBackground';
+
+import customDevBg from '../assets/images/custom-dev-bg.jpg';
+
+import About from './About';
+import Services from './Services';
+import Portfolio from './Portfolio';
+import Careers from './Careers';
+import CtaSection from '../components/CtaSection';
+import Contact from './Contact';
 
 const locations = [
     { name: 'India', country: 'IN' },
@@ -16,127 +26,76 @@ const locations = [
     { name: 'Netherlands', country: 'NL' },
 ];
 
+// Stable variant objects — no re-creation on every render
+const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.08, delayChildren: 0 }
+    }
+};
+
 function Home() {
     const [activeLocationIndex, setActiveLocationIndex] = useState(0);
-    const [isListExpanded, setIsListExpanded] = useState(false);
+
+    // Check if this is the user's first time visiting the site
+    const isFirstVisitRef = React.useRef(!localStorage.getItem('berrybeans_visited'));
+    const isFirstVisit = isFirstVisitRef.current;
+
+    useEffect(() => {
+        if (isFirstVisit) {
+            localStorage.setItem('berrybeans_visited', 'true');
+        }
+    }, [isFirstVisit]);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (!isListExpanded) {
-                setActiveLocationIndex((prev) => (prev + 1) % locations.length);
-            }
+            setActiveLocationIndex((prev) => (prev + 1) % locations.length);
         }, 4000);
         return () => clearInterval(interval);
-    }, [isListExpanded]);
-
-    const fadeUp = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-    };
-
-    const staggerContainer = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.15
-            }
-        }
-    };
+    }, []);
 
     return (
-        <div className="overflow-hidden">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#f8fafc] via-[#ffffff] to-[#f4f7fb]">
+            {/* <JarvisLightBackground /> */}
+
             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-[#fdfdfd] overflow-hidden">
-                <div className="max-w-7xl mx-auto w-full relative z-10">
+            <section id="home" className="relative min-h-screen flex items-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden z-10">
+                <div className="max-w-7xl mx-auto w-full relative">
                     <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
 
                         {/* Left Side: Content */}
-                        <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="text-left order-2 lg:order-1">
-                            <motion.div variants={fadeUp} className="inline-block mb-6 px-4 py-1.5 rounded-full border border-[#f05a66]/20 bg-[#f05a66]/5">
-                                <span className="text-sm font-semibold text-[#f05a66]">Growth Focused Agency</span>
-                            </motion.div>
-
+                        <motion.div initial={isFirstVisit ? "hidden" : "visible"} animate="visible" variants={staggerContainer} className="text-left order-2 lg:order-1 pt-8">
                             <motion.h1
                                 variants={fadeUp}
-                                className="text-3xl md:text-5xl lg:text-5xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight max-w-[95%] md:max-w-none"
+                                className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight max-w-[95%] md:max-w-none"
                             >
-                                We are <span className="text-[#f05a66]">Not Hunting</span> the sales, <br className="hidden md:block" />
-                                Just Supporting your <span className="text-[#aedd4c]">business growth</span>
+                                <span className="text-[#f05a66]">Engineering the</span> <br className="hidden md:block" /> <span className="text-[#aedd4c]">Future.</span> <br />
+                                <span className="text-gray-400 mt-2 block text-3xl md:text-4xl lg:text-5xl">We craft <br className="hidden lg:block" /> digital solutions <br className="hidden md:block" /> that redefine <br className="hidden lg:block" /> industries.</span>
                             </motion.h1>
 
                             <motion.p variants={fadeUp} className="text-lg md:text-xl mb-10 text-gray-600 max-w-2xl font-light leading-relaxed">
-                                We transform your ideas into powerful, scalable, and beautifully designed software products. Elevate your business with enterprise-grade technology.
+                                Innovative development for web, mobile, and cloud platforms. We turn complex challenges into seamless digital experiences.
                             </motion.p>
 
-                            {/* Location Section */}
-                            <motion.div variants={fadeUp} className="space-y-6 relative">
-                                <div className="flex items-center gap-4 group">
-                                    <div className="w-12 h-12 bg-[#aedd4c]/10 rounded-2xl flex items-center justify-center text-[#aedd4c]">
-                                        <MapPin className="w-6 h-6 animate-bounce" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Our Presence</p>
-                                        <AnimatePresence mode="wait">
-                                            <motion.h3
-                                                key={locations[activeLocationIndex].name}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                exit={{ opacity: 0, x: 20 }}
-                                                className="text-2xl font-bold text-gray-900"
-                                            >
-                                                {locations[activeLocationIndex].name}
-                                            </motion.h3>
-                                        </AnimatePresence>
-                                    </div>
-                                </div>
-
-                                {/* Expandable Location List */}
-                                <div className="relative">
-                                    <button
-                                        onClick={() => setIsListExpanded(!isListExpanded)}
-                                        className="flex items-center gap-2 text-gray-500 hover:text-gray-900 font-semibold transition-colors group"
-                                    >
-                                        View all work locations
-                                        <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isListExpanded ? 'rotate-180' : ''}`} />
-                                    </button>
-
-                                    <AnimatePresence>
-                                        {isListExpanded && (
-                                            <motion.div
-                                                initial={{ opacity: 0, height: 0 }}
-                                                animate={{ opacity: 1, height: 'auto' }}
-                                                exit={{ opacity: 0, height: 0 }}
-                                                className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-hidden"
-                                            >
-                                                {locations.map((loc, index) => (
-                                                    <button
-                                                        key={loc.name}
-                                                        onClick={() => setActiveLocationIndex(index)}
-                                                        className={`px-4 py-2 rounded-xl border text-sm font-medium transition-all ${activeLocationIndex === index
-                                                            ? 'border-[#f05a66] bg-[#f05a66] text-white'
-                                                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
-                                                            }`}
-                                                    >
-                                                        {loc.name}
-                                                    </button>
-                                                ))}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-
-                                <div className="flex flex-col sm:flex-row gap-5 pt-8">
-                                    <Link to="/contact" className="bg-[#f05a66] text-white font-bold py-4 px-10 rounded-full hover:bg-[#e04a56] transition-all duration-300 shadow-[0_10px_30px_rgba(240,90,102,0.3)] hover:shadow-[0_15px_40px_rgba(240,90,102,0.5)] hover:-translate-y-1 flex items-center justify-center gap-2">
-                                        Get Started <ArrowRight className="w-5 h-5" />
-                                    </Link>
-                                </div>
+                            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 pt-4">
+                                <ScrollLink to="services" smooth={true} duration={250} offset={-80} className="bg-gray-900 text-white font-bold py-4 px-8 rounded-full hover:bg-black transition-all duration-300 shadow-xl hover:-translate-y-1 flex items-center justify-center cursor-pointer">
+                                    Explore Services
+                                </ScrollLink>
+                                <ScrollLink to="portfolio" smooth={true} duration={250} offset={-80} className="bg-transparent border-2 border-gray-900 text-gray-900 font-bold py-4 px-8 rounded-full hover:bg-gray-50 transition-all duration-300 flex items-center justify-center cursor-pointer">
+                                    Our Portfolio
+                                </ScrollLink>
                             </motion.div>
                         </motion.div>
 
                         {/* Right Side: Globe */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={isFirstVisit ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, ease: "easeOut" }}
                             className="order-1 lg:order-2 h-[180px] md:h-[220px] relative pointer-events-auto flex items-center justify-center"
@@ -152,11 +111,11 @@ function Home() {
             </section>
 
             {/* Services Overview */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative border-b border-gray-100">
+            <section className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-20">
+                    <div className="text-center mb-20 animate-fade-in-up">
                         <h2 className="text-sm font-bold tracking-widest text-berrygreen-600 uppercase mb-3 text-center w-full block">Our Expertise</h2>
-                        <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 w-full block">Comprehensive IT Solutions</h3>
+                        <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 w-full block tracking-tight">Comprehensive IT Solutions</h3>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -164,14 +123,17 @@ function Home() {
                         <ServiceCard icon={<Smartphone className="w-8 h-8" />} title="Mobile Apps" desc="Native and cross-platform mobile experiences that users love." />
                         <ServiceCard icon={<Cloud className="w-8 h-8" />} title="Cloud Solutions" desc="Scalable, secure, and resilient cloud architectures on AWS and Azure." />
                         <ServiceCard icon={<PenTool className="w-8 h-8" />} title="UI/UX Design" desc="User-centric, beautiful interfaces with meticulous attention to detail." />
-                        <div className="lg:col-span-2 bg-gradient-to-br from-[#1e293b] to-berrydark rounded-[32px] p-10 flex flex-col justify-center relative overflow-hidden group shadow-[0_20px_50px_rgba(15,23,42,0.1)]">
-                            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80')] opacity-5 group-hover:opacity-10 transition-opacity duration-700 mix-blend-luminosity bg-cover bg-center text-left"></div>
+                        <div className="lg:col-span-2 fluent-acrylic-dark rounded-[24px] p-10 flex flex-col justify-center relative overflow-hidden group">
+                            <div
+                                className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-700 mix-blend-overlay bg-cover bg-center text-left"
+                                style={{ backgroundImage: `url(${customDevBg})` }}
+                            ></div>
                             <div className="relative z-10 text-left">
                                 <h3 className="text-3xl font-bold text-white mb-4">Need Custom Development?</h3>
                                 <p className="text-gray-400 mb-8 max-w-xl text-lg font-light">Our engineering team is ready to tackle your most complex technical challenges.</p>
-                                <Link to="/services" className="inline-flex items-center text-white font-semibold group-hover:text-berrygreen-400 transition-colors bg-white/10 px-6 py-3 rounded-full hover:bg-white/20 backdrop-blur-sm">
+                                <ScrollLink to="services" smooth={true} duration={250} offset={-80} className="inline-flex items-center text-white font-semibold hover:text-berrygreen-400 transition-colors bg-white/10 px-6 py-3 rounded-full hover:bg-white/20 backdrop-blur-sm cursor-pointer">
                                     Explore all services <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </Link>
+                                </ScrollLink>
                             </div>
                         </div>
                     </div>
@@ -179,31 +141,7 @@ function Home() {
             </section>
 
             {/* Technologies Section (Paradox Marquee) */}
-            <section className="py-24 bg-gray-50 border-b border-gray-100 relative overflow-hidden">
-                <style>{`
-                    @keyframes marquee-left {
-                        0% { transform: translateX(0%); }
-                        100% { transform: translateX(-50%); }
-                    }
-                    @keyframes marquee-right {
-                        0% { transform: translateX(-50%); }
-                        100% { transform: translateX(0%); }
-                    }
-                    .animate-marquee-left {
-                        display: flex;
-                        width: max-content;
-                        animation: marquee-left 35s linear infinite;
-                    }
-                    .animate-marquee-right {
-                        display: flex;
-                        width: max-content;
-                        animation: marquee-right 35s linear infinite;
-                    }
-                    .marquee-container:hover .animate-marquee-left,
-                    .marquee-container:hover .animate-marquee-right {
-                        animation-play-state: paused;
-                    }
-                `}</style>
+            <section className="py-24 relative overflow-hidden z-10">
                 <div className="max-w-7xl mx-auto text-center mb-16 px-4">
                     <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3">Tech Stack</h2>
                     <h3 className="text-3xl font-bold text-gray-900">Powered by Industry Standards</h3>
@@ -211,13 +149,12 @@ function Home() {
 
                 <div className="marquee-container flex flex-col gap-8 relative w-full px-4 md:px-0">
                     {/* Fading edges for the marquee effect */}
-                    <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#fafbfc] to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#fafbfc] to-transparent z-10 pointer-events-none"></div>
 
                     {/* Top Row (Moving Left) */}
                     <div className="overflow-hidden w-full">
                         <div className="animate-marquee-left gap-6 md:gap-10">
-                            {/* Original set */}
                             <TechBadge name="Firebase" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" />
                             <TechBadge name="WordPress" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" />
                             <TechBadge name="Java" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" />
@@ -245,7 +182,6 @@ function Home() {
                     {/* Bottom Row (Moving Right) */}
                     <div className="overflow-hidden w-full">
                         <div className="animate-marquee-right gap-6 md:gap-10">
-                            {/* Original set */}
                             <TechBadge name="GitHub" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" />
                             <TechBadge name="Antigravity" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" />
                             <TechBadge name="VS Code" icon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
@@ -267,31 +203,44 @@ function Home() {
                     </div>
                 </div>
             </section>
+
+            {/* Injected Single Page Sections */}
+            <About />
+            <Services />
+            <Portfolio />
+            <Careers />
+            <CtaSection />
+            <Contact />
         </div>
     );
 }
 
-function ServiceCard({ icon, title, desc }) {
+// Memoized — only re-renders if icon/title/desc change (they never do)
+const ServiceCard = memo(function ServiceCard({ icon, title, desc }) {
     return (
-        <div className="p-10 bg-white rounded-[32px] border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(174,221,76,0.15)] hover:-translate-y-2 transition-all duration-500 group text-left">
-            <div className="w-16 h-16 bg-berrygreen-50 text-berrygreen-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-berrygreen-400 group-hover:text-white transition-all duration-500 shadow-sm">
-                {icon}
+        <div className="fluent-panel p-10 group text-left relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative z-10">
+                <div className="w-16 h-16 bg-white/60 backdrop-blur-md rounded-2xl flex items-center justify-center mb-8 border border-white/80 shadow-sm text-berrygreen-600 group-hover:scale-110 group-hover:bg-berrygreen-500 group-hover:text-white transition-all duration-500">
+                    {icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
+                <p className="text-gray-600 leading-relaxed font-light">{desc}</p>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
-            <p className="text-gray-600 leading-relaxed font-light">{desc}</p>
         </div>
     );
-}
+});
 
-function TechBadge({ name, icon }) {
+// Memoized — only re-renders if name/icon change (they never do)
+const TechBadge = memo(function TechBadge({ name, icon }) {
     return (
         <div className="flex flex-col items-center gap-4 group cursor-default">
-            <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-[28px] border border-gray-100 shadow-sm flex items-center justify-center p-5 group-hover:shadow-xl group-hover:border-berrygreen-200 group-hover:-translate-y-2 transition-all duration-500 bg-gradient-to-br from-white to-gray-50/50">
-                <img src={icon} alt={name} className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500" />
+            <div className="w-20 h-20 md:w-24 md:h-24 fluent-panel flex items-center justify-center p-5 group-hover:bg-white/80 group-hover:border-cyan-200 transition-all duration-500">
+                <img src={icon} alt={name} className="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" />
             </div>
-            <span className="text-sm font-bold text-gray-400 group-hover:text-berrygreen-600 tracking-wider uppercase transition-colors">{name}</span>
+            <span className="text-sm font-bold text-gray-400 group-hover:text-cyan-600 tracking-wider uppercase transition-colors">{name}</span>
         </div>
     );
-}
+});
 
 export default Home;
