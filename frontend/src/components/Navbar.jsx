@@ -1,18 +1,33 @@
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import AnimatedLogo from './AnimatedLogo';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const lastScrollY = useRef(0);
+    const isScrollingRef = useRef(false);
     const [logoClicks, setLogoClicks] = useState(0);
     const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            if (isScrollingRef.current) return;
+            
+            const currentScrollY = window.scrollY;
+            setScrolled(currentScrollY > 20);
+            
+            if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+                // Scrolling down - hide navbar
+                setVisible(false);
+            } else {
+                // Scrolling up - show navbar
+                setVisible(true);
+            }
+            lastScrollY.current = currentScrollY;
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -31,6 +46,14 @@ function Navbar() {
 
     const handleNavClick = (path) => {
         setIsOpen(false);
+        setVisible(true);
+        isScrollingRef.current = true;
+        
+        // Reset after animation
+        setTimeout(() => {
+            isScrollingRef.current = false;
+        }, 1000);
+
         if (location.pathname !== '/') {
             navigate(`/#${path}`);
         }
@@ -48,7 +71,7 @@ function Navbar() {
     };
 
     return (
-        <nav className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled ? 'fluent-acrylic py-2' : 'bg-transparent py-4'}`}>
+        <nav className={`fixed w-full top-0 z-50 transition-all duration-300 transform ${visible ? 'translate-y-0' : '-translate-y-full'} ${scrolled ? 'fluent-acrylic py-2 shadow-md' : 'bg-transparent py-4'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     <div className="flex-shrink-0">
@@ -73,8 +96,12 @@ function Navbar() {
                                 {link.name}
                             </ScrollLink>
                         ))}
-                        <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="ml-4 fluent-panel !bg-gradient-to-r !from-blue-600/90 !to-purple-600/90 text-white px-6 py-2.5 !rounded-lg font-bold hover:!shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer border border-white/20">
-                            Start Your Project
+                        <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="ml-4 p-[1px] rounded-lg bg-gradient-to-r from-[#f05a66] to-[#aedd4c] hover:shadow-lg transition-all duration-300 cursor-pointer">
+                            <div className="animate-gradient rounded-[7px] px-6 py-2 font-extrabold flex items-center justify-center h-full">
+                                <span className="text-white">
+                                    Start Your Project
+                                </span>
+                            </div>
                         </ScrollLink>
                     </div>
 
@@ -104,8 +131,12 @@ function Navbar() {
                             {link.name}
                         </ScrollLink>
                     ))}
-                    <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="block mt-4 text-center bg-gradient-to-r from-blue-600/90 to-purple-600/90 text-white px-4 py-3 rounded-xl font-bold shadow-md cursor-pointer border border-white/20">
-                        Start Your Project
+                    <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="block mt-4 p-[1.5px] rounded-xl bg-gradient-to-r from-[#f05a66] to-[#aedd4c] shadow-md cursor-pointer">
+                        <div className="animate-gradient rounded-[11px] py-3 font-extrabold text-center">
+                            <span className="text-white">
+                                Start Your Project
+                            </span>
+                        </div>
                     </ScrollLink>
                 </div>
             </div>

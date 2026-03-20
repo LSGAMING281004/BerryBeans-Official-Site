@@ -35,6 +35,7 @@ export default {
       },
       fontFamily: {
         sans: ['Poppins', 'Inter', 'sans-serif'],
+        outfit: ['Outfit', 'Poppins', 'sans-serif'],
       },
       animation: {
         'blob': 'blob 7s infinite',
