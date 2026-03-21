@@ -16,12 +16,12 @@ function Footer() {
     return (
         <footer className="bg-white text-gray-800 pt-24 pb-12 relative overflow-hidden font-outfit border-t border-gray-100">
             {/* Background Watermark */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[12rem] md:text-[13rem] font-black text-black/[0.06] select-none pointer-events-none whitespace-nowrap z-0 leading-none">
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[5rem] sm:text-[8rem] md:text-[12rem] lg:text-[13rem] font-black text-black/[0.06] select-none pointer-events-none whitespace-nowrap z-0 leading-none">
                 berrybeans
             </div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-16 md:mb-20">
 
                     {/* Brand Info */}
                     <div className="md:col-span-4 lg:col-span-4 space-y-6">
@@ -64,7 +64,7 @@ function Footer() {
                     </div>
 
                     {/* Navigation Columns */}
-                    <div className="md:col-span-6 grid grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="md:col-span-6 grid grid-cols-3 gap-6 md:gap-8">
                         <div className="space-y-6">
                             <h4 className="text-sm font-black uppercase tracking-[0.2em] text-[#f05a66]">Solutions</h4>
                             <ul className="space-y-4 text-sm font-semibold text-gray-500">
@@ -92,7 +92,7 @@ function Footer() {
                     </div>
 
                     {/* Right Side Icons */}
-                    <div className="md:col-span-2 flex flex-col items-center md:items-end space-y-4 border-l border-gray-100 pl-8 h-fit">
+                    <div className="md:col-span-2 flex flex-row md:flex-col items-center md:items-end justify-start gap-3 md:space-y-4 md:border-l md:border-gray-100 md:pl-8 h-fit">
                         {[
                             { icon: <MapPin size={22} />, title: "Location" },
                             { icon: <Mail size={22} />, title: "Mail" },

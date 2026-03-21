@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Globe from 'react-globe.gl';
 
 const locations = [
-    { name: 'India', lat: 20.5937, lng: 78.9629, color: '#f05a66' },
-    { name: 'Singapore', lat: 1.3521, lng: 103.8198, color: '#f05a66' },
-    { name: 'Malaysia', lat: 4.2105, lng: 101.9758, color: '#f05a66' },
-    { name: 'US', lat: 37.0902, lng: -95.7129, color: '#f05a66' },
-    { name: 'UK', lat: 51.5074, lng: -0.1278, color: '#f05a66' },
-    { name: 'Qatar', lat: 25.2854, lng: 51.5310, color: '#f05a66' },
-    { name: 'Congo', lat: -4.2634, lng: 15.2832, color: '#f05a66' },
-    { name: 'Dubai', lat: 25.2048, lng: 55.2708, color: '#f05a66' },
-    { name: 'Netherlands', lat: 52.0907, lng: 5.1214, color: '#f05a66' },
+  { name: 'India', lat: 20.5937, lng: 78.9629, color: '#f05a66' },
+  { name: 'Singapore', lat: 1.3521, lng: 103.8198, color: '#f05a66' },
+  { name: 'Malaysia', lat: -3.122231, lng: 121.135477, color: '#f05a66' },
+  { name: 'US', lat: 37.0902, lng: -95.7129, color: '#f05a66' },
+  { name: 'UK', lat: 51.5074, lng: -0.1278, color: '#f05a66' },
+  { name: 'Qatar', lat: 25.2854, lng: 51.5310, color: '#f05a66' },
+  { name: 'Congo', lat: -4.2634, lng: 15.2832, color: '#f05a66' },
+  { name: 'Dubai', lat: 25.2048, lng: 55.2708, color: '#f05a66' },
+  { name: 'Netherlands', lat: 52.0907, lng: 5.1214, color: '#f05a66' },
 ];
 
 // Stable constant — defined once outside component
@@ -20,29 +20,31 @@ const LABEL_LNG = d => d.lng;
 const LABEL_TEXT = d => d.name;
 
 const WorldGlobe = ({ activeLocationIndex }) => {
-    const globeRef = useRef();
-    const [countries, setCountries] = useState({ features: [] });
+  const globeRef = useRef();
+  const [countries, setCountries] = useState({ features: [] });
 
-    useEffect(() => {
-        // Load world data for hex polygons
-        fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
-            .then(res => res.json())
-            .then(setCountries);
-    }, []);
+  useEffect(() => {
+    // Load world data for hex polygons
+    fetch('https://raw.githubusercontent.com/vasturiano/react-globe.gl/master/example/datasets/ne_110m_admin_0_countries.geojson')
+      .then(res => res.json())
+      .then(setCountries);
+  }, []);
 
-    // Stable callbacks that only change when activeLocationIndex changes
-    const getHtmlElement = useCallback(d => {
-        const el = document.createElement('div');
-        const isActive = locations.findIndex(l => l.name === d.name) === activeLocationIndex;
-        
-        // Use CSS/HTML for perfect typographical clarity and boldness
-        el.innerHTML = `
+  // Stable callbacks that only change when activeLocationIndex changes
+  const getHtmlElement = useCallback(d => {
+    const el = document.createElement('div');
+    const isActive = locations.findIndex(l => l.name === d.name) === activeLocationIndex;
+
+    // Use CSS/HTML for perfect typographical clarity and boldness
+    el.innerHTML = `
           <div style="
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             transform: translate(-50%, -100%);
             pointer-events: none;
+            opacity: ${isActive ? '1' : '0.4'};
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           ">
             <div style="
               font-weight: 900; 
@@ -60,58 +62,80 @@ const WorldGlobe = ({ activeLocationIndex }) => {
             ">
               ${d.name}
             </div>
-            <div style="
-              width: ${isActive ? '14px' : '8px'}; 
-              height: ${isActive ? '14px' : '8px'}; 
-              background-color: ${isActive ? '#f05a66' : '#9ca3af'}; 
-              border-radius: 50%; 
-              margin-top: ${isActive ? '10px' : '6px'}; 
-              border: 2px solid white; 
-              box-shadow: 0 2px 6px rgba(0,0,0,0.2); 
-              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            "></div>
+            ${isActive ? `
+              <img 
+                src="/berry-icon.png" 
+                alt="${d.name}"
+                class="globe-berry-icon-active"
+                style="
+                  width: 52px; 
+                  height: 52px; 
+                  margin-top: 2px; 
+                  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25)); 
+                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                  object-fit: contain;
+                "
+              />
+              <div style="
+                width: 2px;
+                height: 15px;
+                background: linear-gradient(to bottom, #f05a66, transparent);
+                margin-top: -2px;
+              "></div>
+            ` : `
+              <div style="
+                width: 8px; 
+                height: 8px; 
+                background-color: #9ca3af; 
+                border-radius: 50%; 
+                margin-top: 6px; 
+                border: 2px solid white; 
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2); 
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              "></div>
+            `}
           </div>
         `;
-        return el;
-    }, [activeLocationIndex]);
+    return el;
+  }, [activeLocationIndex]);
 
-    useEffect(() => {
-        if (globeRef.current) {
-            globeRef.current.controls().autoRotate = true;
-            globeRef.current.controls().autoRotateSpeed = 0.8;
-            globeRef.current.controls().enableZoom = false;
+  useEffect(() => {
+    if (globeRef.current) {
+      globeRef.current.controls().autoRotate = true;
+      globeRef.current.controls().autoRotateSpeed = 0.8;
+      globeRef.current.controls().enableZoom = false;
 
-            const loc = locations[activeLocationIndex];
-            if (loc) {
-                globeRef.current.pointOfView({ lat: loc.lat, lng: loc.lng, altitude: 1.8 }, 1000);
-            }
-        }
-    }, [activeLocationIndex]);
+      const loc = locations[activeLocationIndex];
+      if (loc) {
+        globeRef.current.pointOfView({ lat: loc.lat, lng: loc.lng, altitude: 1.8 }, 1000);
+      }
+    }
+  }, [activeLocationIndex]);
 
-    return (
-        <div className="w-full h-full flex items-center justify-center">
-            <Globe
-                ref={globeRef}
-                backgroundColor="rgba(255,255,255,0)"
-                globeImageUrl="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
-                showAtmosphere={false}
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <Globe
+        ref={globeRef}
+        backgroundColor="rgba(255,255,255,0)"
+        globeImageUrl="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
+        showAtmosphere={false}
 
-                hexPolygonsData={countries.features}
-                hexPolygonResolution={3}
-                hexPolygonMargin={0.2}
-                hexPolygonColor={HEX_COLOR}
+        hexPolygonsData={countries.features}
+        hexPolygonResolution={3}
+        hexPolygonMargin={0.2}
+        hexPolygonColor={HEX_COLOR}
 
-                htmlElementsData={locations}
-                htmlLat={LABEL_LAT}
-                htmlLng={LABEL_LNG}
-                htmlElement={getHtmlElement}
-                htmlAltitude={0.015}
+        htmlElementsData={locations}
+        htmlLat={LABEL_LAT}
+        htmlLng={LABEL_LNG}
+        htmlElement={getHtmlElement}
+        htmlAltitude={0.001}
 
-                width={400}
-                height={400}
-            />
-        </div>
-    );
+        width={400}
+        height={400}
+      />
+    </div>
+  );
 };
 
 export default WorldGlobe;
