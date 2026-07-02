@@ -4,7 +4,7 @@ import { Link as ScrollLink } from 'react-scroll';
 function CtaSection() {
     return (
         <section className="py-24 px-4 sm:px-6 lg:px-8 relative z-10 w-full mx-auto max-w-7xl">
-            <div className="fluent-panel relative overflow-hidden rounded-[3rem] py-24 px-8 shadow-xl border border-white/60">
+            <div className="fluent-panel relative overflow-hidden rounded-3xl md:rounded-[3rem] py-16 md:py-24 px-6 md:px-12 shadow-xl border border-white/60">
                 {/* Soft background glows similar to image */}
                 <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-200/40 rounded-full blur-[120px] -z-10 pointer-events-none mix-blend-multiply"></div>
                 <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-pink-200/40 rounded-full blur-[120px] -z-10 pointer-events-none mix-blend-multiply"></div>
@@ -15,7 +15,7 @@ function CtaSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-gray-900 leading-[1.1] mb-8 tracking-tight"
+                        className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-gray-900 leading-[1.1] mb-8 tracking-tight"
                     >
                         Ready to brew <br className="hidden md:block" /> something <span className="text-[#f05a66]">amazing?</span>
                     </motion.h2>

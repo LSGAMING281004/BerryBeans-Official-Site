@@ -183,7 +183,7 @@ function Dashboard() {
 
                     {/* Add / Edit Form */}
                     {showForm && (
-                        <div className="mb-10 bg-white p-8 rounded-[2.5rem] shadow-xl border border-berrypink-100">
+                        <div className="mb-10 bg-white p-5 sm:p-8 rounded-3xl md:rounded-[2.5rem] shadow-xl border border-berrypink-100">
                             <h2 className="text-2xl font-bold mb-6 text-gray-900">
                                 {activeTab === 'leadership' ? (editLeader ? 'Edit Member' : 'Add New Member') : `Create New ${activeTab.slice(0, -1)}`}
                             </h2>
@@ -418,7 +418,7 @@ function Dashboard() {
                                                         </td>
                                                         <td className="px-4 md:px-8 py-4 md:py-6">
                                                             <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                                                {proj.technologies?.split(',').map(tech => (
+                                                                {(proj.technologies || '').split(',').map(tech => tech.trim() && (
                                                                     <span key={tech} className="bg-berrypink-50 text-berrypink-600 px-2 md:px-3 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-bold">{tech.trim()}</span>
                                                                 ))}
                                                             </div>
@@ -467,7 +467,7 @@ function Dashboard() {
             {/* View Message Modal */}
             {viewMessage && (
                 <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[200] p-4">
-                    <div className="bg-white rounded-[2rem] p-8 w-full max-w-lg shadow-2xl relative">
+                    <div className="bg-white rounded-3xl md:rounded-[2rem] p-6 md:p-8 w-full max-w-lg shadow-2xl relative">
                         <button onClick={() => setViewMessage(null)} className="absolute top-5 right-5 p-2 hover:bg-gray-100 rounded-full transition text-gray-400 hover:text-gray-600">
                             <X size={22} />
                         </button>
@@ -506,7 +506,7 @@ function Dashboard() {
             {/* View Job Modal */}
             {viewJob && (
                 <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[200] p-4">
-                    <div className="bg-white rounded-[2rem] p-8 w-full max-w-lg shadow-2xl relative max-h-[90vh] overflow-y-auto">
+                    <div className="bg-white rounded-3xl md:rounded-[2rem] p-6 md:p-8 w-full max-w-lg shadow-2xl relative max-h-[90vh] overflow-y-auto">
                         <button onClick={() => setViewJob(null)} className="absolute top-5 right-5 p-2 hover:bg-gray-100 rounded-full transition text-gray-400 hover:text-gray-600">
                             <X size={22} />
                         </button>
@@ -524,7 +524,7 @@ function Dashboard() {
                             <div className="mt-5">
                                 <h4 className="font-bold text-gray-800 mb-2 text-sm uppercase tracking-wider">Requirements</h4>
                                 <ul className="space-y-1.5">
-                                    {viewJob.requirements.split(',').map((req, i) => (
+                                    {(viewJob.requirements || '').split(',').map((req, i) => req.trim() && (
                                         <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
                                             <span className="mt-2 w-1.5 h-1.5 rounded-full bg-berrypink-400 flex-shrink-0"></span>
                                             {req.trim()}

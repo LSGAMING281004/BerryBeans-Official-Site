@@ -29,7 +29,7 @@ function About() {
     }, []);
 
     return (
-        <section id="about" className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative z-10">
+        <section id="about" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative z-10">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp} className="text-center mb-24">
                 <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Our Story</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">About BerryBeans</h1>
@@ -38,7 +38,7 @@ function About() {
                 </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
+            <div className="grid md:grid-cols-2 gap-16 items-center mb-16 md:mb-32">
                 <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
                     <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
                     <p className="text-lg text-gray-600 leading-relaxed mb-10 font-light">
@@ -60,7 +60,7 @@ function About() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="fluent-panel p-12 lg:p-20"
+                className="fluent-panel p-6 sm:p-12 lg:p-20"
             >
                 <div className="text-center mb-16">
                     <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3">Leadership</h2>
@@ -74,7 +74,7 @@ function About() {
                 ) : leaders.length === 0 ? (
                     <p className="text-center text-gray-400 font-light py-10">Leadership team coming soon.</p>
                 ) : (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
                         {leaders.map((member, index) => (
                             <motion.div
                                 key={member.id}

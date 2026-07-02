@@ -66,7 +66,7 @@ function Careers() {
     };
 
     return (
-        <section id="careers" className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen relative z-10">
+        <section id="careers" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.4 }} className="text-center mb-20">
                 <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Join Us</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">Build the Future</h1>
@@ -136,7 +136,7 @@ function Careers() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.2 }}
-                            className="fluent-acrylic rounded-[2.5rem] p-8 md:p-12 w-full max-w-2xl shadow-2xl relative my-8"
+                            className="fluent-acrylic rounded-3xl md:rounded-[2.5rem] p-5 sm:p-8 md:p-12 w-full max-w-2xl shadow-2xl relative my-8"
                         >
                             <button
                                 onClick={() => setViewJob(null)}
@@ -176,7 +176,7 @@ function Careers() {
                                         <CheckCircle2 size={16} className="text-berrypink-500" /> Requirements
                                     </h4>
                                     <ul className="space-y-2">
-                                        {viewJob.requirements.split(',').map((req, i) => (
+                                        {(viewJob.requirements || '').split(',').map((req, i) => req.trim() && (
                                             <li key={i} className="flex items-start gap-2 text-gray-600 text-sm font-light">
                                                 <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-berrypink-400 flex-shrink-0"></span>
                                                 {req.trim()}
@@ -206,7 +206,7 @@ function Careers() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.2 }}
-                            className="fluent-acrylic rounded-[2.5rem] p-8 md:p-12 w-full max-w-2xl shadow-2xl relative my-8"
+                            className="fluent-acrylic rounded-3xl md:rounded-[2.5rem] p-5 sm:p-8 md:p-12 w-full max-w-2xl shadow-2xl relative my-8"
                         >
                             <button
                                 onClick={() => setShowForm(false)}

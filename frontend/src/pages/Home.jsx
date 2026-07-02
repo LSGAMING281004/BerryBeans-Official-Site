@@ -65,25 +65,25 @@ function Home() {
             {/* <JarvisLightBackground /> */}
 
             {/* Hero Section */}
-            <section id="home" className="relative min-h-screen flex items-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden z-10">
+            <section id="home" className="relative min-h-screen flex items-center pt-32 pb-16 lg:pt-36 lg:pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden z-10">
                 <div className="max-w-7xl mx-auto w-full relative">
                     <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
 
                         {/* Left Side: Content */}
-                        <motion.div initial={isFirstVisit ? "hidden" : "visible"} animate="visible" variants={staggerContainer} className="text-left order-2 lg:order-1 pt-8">
+                        <motion.div initial={isFirstVisit ? "hidden" : "visible"} animate="visible" variants={staggerContainer} className="text-left order-2 lg:order-1 pt-8 lg:pt-4">
                             <motion.h1
                                 variants={fadeUp}
-                                className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight max-w-[95%] md:max-w-none"
+                                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-gray-900 mb-4 lg:mb-6 leading-tight max-w-[95%] md:max-w-none"
                             >
                                 <span className="text-[#f05a66]">Engineering the</span> <br className="hidden md:block" /> <span className="text-[#aedd4c]">Future.</span> <br />
-                                <span className="text-gray-400 mt-2 block text-3xl md:text-4xl lg:text-5xl">We craft <br className="hidden lg:block" /> digital solutions <br className="hidden md:block" /> that redefine <br className="hidden lg:block" /> industries.</span>
+                                <span className="text-gray-400 mt-2 block text-3xl md:text-4xl lg:text-4xl xl:text-5xl">We craft <br className="hidden lg:block" /> digital solutions <br className="hidden md:block" /> that redefine <br className="hidden lg:block" /> industries.</span>
                             </motion.h1>
 
-                            <motion.p variants={fadeUp} className="text-lg md:text-xl mb-10 text-gray-600 max-w-2xl font-light leading-relaxed">
+                            <motion.p variants={fadeUp} className="text-lg md:text-xl mb-6 lg:mb-8 text-gray-600 max-w-2xl font-light leading-relaxed">
                                 Innovative development for web, mobile, and cloud platforms. We turn complex challenges into seamless digital experiences.
                             </motion.p>
 
-                            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 pt-4">
+                            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 pt-2 lg:pt-4">
                                 <ScrollLink to="services" smooth={true} duration={250} offset={-80} className="bg-gray-900 text-white font-bold py-4 px-8 rounded-full hover:bg-black transition-all duration-300 shadow-xl hover:-translate-y-1 flex items-center justify-center cursor-pointer">
                                     Explore Services
                                 </ScrollLink>
@@ -98,12 +98,12 @@ function Home() {
                             initial={isFirstVisit ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, ease: "easeOut" }}
-                            className="order-1 lg:order-2 h-[180px] md:h-[220px] relative pointer-events-auto flex items-center justify-center"
+                            className="order-1 lg:order-2 h-[350px] md:h-[450px] lg:h-[450px] xl:h-[520px] relative pointer-events-auto flex items-center justify-center"
                         >
                             <WorldGlobe activeLocationIndex={activeLocationIndex} />
 
-                            {/* Decorative background for globe */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-[#f05a66]/5 to-[#aedd4c]/5 rounded-full blur-[100px] -z-10"></div>
+                            {/* Decorative background glow for globe */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-radial from-[#3b82f6]/8 via-[#f05a66]/4 to-transparent rounded-full blur-[80px] -z-10"></div>
                         </motion.div>
 
                     </div>
@@ -123,7 +123,7 @@ function Home() {
                         <ServiceCard icon={<Smartphone className="w-8 h-8" />} title="Mobile Apps" desc="Native and cross-platform mobile experiences that users love." />
                         <ServiceCard icon={<Cloud className="w-8 h-8" />} title="Cloud Solutions" desc="Scalable, secure, and resilient cloud architectures on AWS and Azure." />
                         <ServiceCard icon={<PenTool className="w-8 h-8" />} title="UI/UX Design" desc="User-centric, beautiful interfaces with meticulous attention to detail." />
-                        <div className="lg:col-span-2 fluent-acrylic-dark rounded-[24px] p-10 flex flex-col justify-center relative overflow-hidden group">
+                        <div className="md:col-span-2 lg:col-span-2 fluent-acrylic-dark rounded-[24px] p-6 sm:p-10 flex flex-col justify-center relative overflow-hidden group">
                             <div
                                 className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-700 mix-blend-overlay bg-cover bg-center text-left"
                                 style={{ backgroundImage: `url(${customDevBg})` }}
@@ -218,10 +218,10 @@ function Home() {
 // Memoized — only re-renders if icon/title/desc change (they never do)
 const ServiceCard = memo(function ServiceCard({ icon, title, desc }) {
     return (
-        <div className="fluent-panel p-10 group text-left relative overflow-hidden">
+        <div className="fluent-panel p-6 sm:p-10 group text-left relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="relative z-10">
-                <div className="w-16 h-16 bg-white/60 backdrop-blur-md rounded-2xl flex items-center justify-center mb-8 border border-white/80 shadow-sm text-berrygreen-600 group-hover:scale-110 group-hover:bg-berrygreen-500 group-hover:text-white transition-all duration-500">
+                <div className="w-16 h-16 bg-white/60 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 sm:mb-8 border border-white/80 shadow-sm text-berrygreen-600 group-hover:scale-110 group-hover:bg-berrygreen-500 group-hover:text-white transition-all duration-500">
                     {icon}
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>

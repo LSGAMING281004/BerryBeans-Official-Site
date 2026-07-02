@@ -30,8 +30,8 @@ function Contact() {
     };
 
     return (
-        <section id="contact" className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen relative z-10">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-20 animate-fade-in-up">
+        <section id="contact" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="text-center mb-20 animate-fade-in-up">
                 <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">Contact Us</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">Let's start a conversation</h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
@@ -41,7 +41,7 @@ function Contact() {
 
             <div className="grid lg:grid-cols-3 gap-12 lg:gap-20">
                 {/* Contact info */}
-                <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="lg:col-span-1 space-y-10">
+                <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="lg:col-span-1 space-y-10">
                     <div>
                         <h3 className="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h3>
                         <p className="text-gray-600 font-light leading-relaxed mb-10">We usually respond within 24 hours to schedule an initial discovery call.</p>
@@ -78,8 +78,8 @@ function Contact() {
                 </motion.div>
 
                 {/* Form container */}
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.3 }} className="lg:col-span-2">
-                    <div className="fluent-panel p-8 md:p-12">
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }} className="lg:col-span-2">
+                    <div className="fluent-panel p-6 sm:p-8 md:p-12">
                         <form onSubmit={handleSubmit} className="space-y-8">
                             {status.msg && (
                                 <div className={`p-4 rounded-2xl text-sm font-medium ${status.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>

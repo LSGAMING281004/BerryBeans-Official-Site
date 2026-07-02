@@ -45,7 +45,7 @@ function Login() {
             <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-berrygreen-300 rounded-full mix-blend-multiply filter blur-[128px] opacity-40"></div>
             <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-berrypink-300 rounded-full mix-blend-multiply filter blur-[128px] opacity-40"></div>
 
-            <div className="max-w-md w-full space-y-8 bg-white/80 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white relative z-10">
+            <div className="max-w-md w-full space-y-8 bg-white/80 backdrop-blur-xl p-6 sm:p-10 rounded-3xl md:rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white relative z-10">
                 <div>
                     <div className="flex justify-center mb-6">
                         <AnimatedLogo className="h-16 w-auto drop-shadow-md" speed={0.6} />

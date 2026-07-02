@@ -71,7 +71,7 @@ function Navbar() {
     };
 
     return (
-        <nav className={`fixed w-full top-0 z-50 transition-all duration-300 transform ${visible ? 'translate-y-0' : '-translate-y-full'} ${scrolled ? 'fluent-acrylic py-2 shadow-md' : 'bg-transparent py-4'}`}>
+        <nav className={`fixed w-full top-0 z-50 transition-all duration-300 transform ${visible ? 'translate-y-0' : '-translate-y-full'} ${scrolled ? 'fluent-acrylic py-1 shadow-md' : 'bg-transparent py-2'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     <div className="flex-shrink-0">
@@ -96,12 +96,8 @@ function Navbar() {
                                 {link.name}
                             </ScrollLink>
                         ))}
-                        <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="ml-4 p-[1px] rounded-lg bg-gradient-to-r from-[#f05a66] to-[#aedd4c] hover:shadow-lg transition-all duration-300 cursor-pointer">
-                            <div className="animate-gradient rounded-[7px] px-6 py-2 font-extrabold flex items-center justify-center h-full">
-                                <span className="text-white">
-                                    Start Your Project
-                                </span>
-                            </div>
+                        <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="ml-4 btn-aurora rounded-lg px-6 py-2 font-extrabold text-white flex items-center justify-center cursor-pointer">
+                            Start Your Project
                         </ScrollLink>
                     </div>
 
@@ -114,7 +110,7 @@ function Navbar() {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`md:hidden absolute w-full mx-4 left-0 right-0 top-full fluent-acrylic rounded-2xl shadow-2xl transition-all duration-300 origin-top overflow-hidden border border-white/40 ${isOpen ? 'max-h-96 opacity-100 mt-2 p-2' : 'max-h-0 opacity-0 border-transparent'}`}>
+            <div className={`md:hidden absolute left-4 right-4 top-full fluent-acrylic rounded-2xl shadow-2xl transition-all duration-300 origin-top overflow-hidden border border-white/40 ${isOpen ? 'max-h-96 opacity-100 mt-2 p-2' : 'max-h-0 opacity-0 border-transparent'}`}>
                 <div className="space-y-1">
                     {navLinks.map((link) => (
                         <ScrollLink
@@ -131,12 +127,8 @@ function Navbar() {
                             {link.name}
                         </ScrollLink>
                     ))}
-                    <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="block mt-4 p-[1.5px] rounded-xl bg-gradient-to-r from-[#f05a66] to-[#aedd4c] shadow-md cursor-pointer">
-                        <div className="animate-gradient rounded-[11px] py-3 font-extrabold text-center">
-                            <span className="text-white">
-                                Start Your Project
-                            </span>
-                        </div>
+                    <ScrollLink to="contact" smooth={true} duration={250} offset={-80} onClick={() => handleNavClick('contact')} className="block mt-4 btn-aurora rounded-xl py-3 font-extrabold text-white text-center cursor-pointer">
+                        Start Your Project
                     </ScrollLink>
                 </div>
             </div>

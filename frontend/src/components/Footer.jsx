@@ -64,7 +64,7 @@ function Footer() {
                     </div>
 
                     {/* Navigation Columns */}
-                    <div className="md:col-span-6 grid grid-cols-3 gap-6 md:gap-8">
+                    <div className="md:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8">
                         <div className="space-y-6">
                             <h4 className="text-sm font-black uppercase tracking-[0.2em] text-[#f05a66]">Solutions</h4>
                             <ul className="space-y-4 text-sm font-semibold text-gray-500">

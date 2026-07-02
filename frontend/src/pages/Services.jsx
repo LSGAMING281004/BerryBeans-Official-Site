@@ -11,7 +11,7 @@ import fullstackImg from '../assets/images/fullstack.jpg';
 
 function Services() {
     return (
-        <section id="services" className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative z-10">
+        <section id="services" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden relative z-10">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.4 }} className="text-center mb-24">
                 <h2 className="text-sm font-bold tracking-widest text-berrypink-600 uppercase mb-3 block w-full">What We Do</h2>
                 <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-8 tracking-tight block w-full">Enterprise Services</h1>
@@ -20,7 +20,7 @@ function Services() {
                 </p>
             </motion.div>
 
-            <div className="space-y-32">
+            <div className="space-y-16 md:space-y-24 lg:space-y-32">
                 <ServiceSection
                     icon={<Code className="w-10 h-10" />}
                     title="Web Application Engineering"
